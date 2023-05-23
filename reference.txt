@@ -2,3 +2,5 @@
     - https://www.thecocktaildb.com/api.php (for cocktails)
 2. Neon light affect
     - https://css-tricks.com/how-to-create-neon-text-with-css/
+3. scrollbar styling
+    - https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
