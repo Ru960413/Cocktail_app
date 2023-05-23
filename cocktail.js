@@ -4,6 +4,17 @@ const cocktailsContainer = document.querySelector(".cocktails");
 const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
 const btnAlcoholic = document.querySelector(".btn-alcoholic");
 
+// TODOs:
+// 1. allow users to search cocktail by name then render search list
+// 2. allow users to add cocktail to bookmark
+// 3. allow users to view bookmarked cocktails
+// Extras: 
+// 1. add pagination
+// 2. add servings calculator
+
+const randomNum = function (length) {
+  return Math.floor(Math.random() * (length + 1));
+};
 const renderCocktail = function (data) {
   while (cocktailsContainer.firstChild) {
     cocktailsContainer.removeChild(cocktailsContainer.firstChild);
@@ -32,7 +43,7 @@ const renderCocktail = function (data) {
       <li class="ingredient-item">${data.strMeasure5 || ""} ${
     data.strIngredient5 || ""
   }</li></p>
-      <p class="cocktail__row instructions"><span>Instruction:</span><br><div>${
+      <p class="cocktail__row"><span>Instruction:</span><br><div class="instruction-content">${
         data.strInstructions
       }</div></p>
       
@@ -42,18 +53,18 @@ const renderCocktail = function (data) {
   cocktailsContainer.insertAdjacentHTML("beforeend", html);
 };
 
-const getRandomCocktail = function () {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
-    .then((res) => res.json())
-    .then(function (data) {
-      data = data.drinks[0];
-      console.log(data);
-      renderCocktail(data);
-    })
-    .finally((cocktailsContainer.style.opacity = 1));
-};
+// const getRandomCocktail = function () {
+//   fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+//     .then((res) => res.json())
+//     .then(function (data) {
+//       data = data.drinks[0];
+//       console.log(data);
+//       renderCocktail(data);
+//     })
+//     .finally((cocktailsContainer.style.opacity = 1));
+// };
 
-// ISSUE: cannot generate random drink
+// ISSUE: cannot generate random drink SOLVED
 // Can only get the id of drink, need to use id to get other details (chaining promises)
 const getNonAlcoholic = function () {
   fetch(
@@ -61,7 +72,9 @@ const getNonAlcoholic = function () {
   )
     .then((res) => res.json())
     .then(function (data) {
-      let id = data.drinks[0].idDrink;
+      let length = data.drinks.length;
+      let num = randomNum(length);
+      let id = data.drinks[num].idDrink;
       return id;
     })
     .then((id) => {
@@ -76,13 +89,15 @@ const getNonAlcoholic = function () {
     .finally((cocktailsContainer.style.opacity = 1));
 };
 
-// ISSUE: cannot generate random drink
+// ISSUE: cannot generate random drink SOLVED
 // Can only get the id of drink, need to use id to get other details (chaining promises)
 const getAlcoholic = function () {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`)
     .then((res) => res.json())
     .then(function (data) {
-      let id = data.drinks[0].idDrink;
+      let length = data.drinks.length;
+      let num = randomNum(length);
+      let id = data.drinks[num].idDrink;
       return id;
     })
     .then((id) => {
@@ -97,6 +112,6 @@ const getAlcoholic = function () {
     .finally((cocktailsContainer.style.opacity = 1));
 };
 
-btnCocktail.addEventListener("click", getRandomCocktail);
-// btnAlcoholic.addEventListener("click", getAlcoholic);
-// btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
+btnCocktail.addEventListener("click", getAlcoholic);
+btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
+//btnAlcoholic.addEventListener("click", getAlcoholic);
