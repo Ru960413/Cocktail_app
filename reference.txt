@@ -1,0 +1,4 @@
+1. APIs 
+    - https://www.thecocktaildb.com/api.php (for cocktails)
+2. Neon light affect
+    - https://css-tricks.com/how-to-create-neon-text-with-css/

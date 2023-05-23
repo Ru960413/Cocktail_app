@@ -1,0 +1,27 @@
+Feature
+    1. let user search drink by name, and render it as a list
+    2. get a random alcoholic drink
+    3. get a random non alcoholic drink
+    4. let user add drinks as favourite
+
+
+Extras 
+    1. allow user to adjust serving
+    2. let user add their own drinks
+
+Functionality related questions: 
+    - How to render ingredients, when drinks have various amount of ingredients? (not sure how to do this wisely) 
+    - Can I let user save recipe without needing them to log in?
+    - How to calculate the ingredients for different servings?
+
+Styling:
+    - How to design the app to have night club/bar vibe? SOLVED
+    -> black background with neon light titles
+    -> white text on black background
+
+    - How to design user-friendly UI?
+    -> easy to see
+    -> easy to access
+    -> smooth
+
+Create flowchart!
