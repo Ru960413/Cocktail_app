@@ -5,12 +5,13 @@ const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
 const btnAlcoholic = document.querySelector(".btn-alcoholic");
 
 // TODOs:
-// 1. allow users to search cocktail by name then render search list
+// 1. allow users to search cocktail by name then render search result as list
 // 2. allow users to add cocktail to bookmark
 // 3. allow users to view bookmarked cocktails
-// Extras: 
-// 1. add pagination
-// 2. add servings calculator
+// 4. add pagination
+
+// Extras:
+// 1. add servings calculator
 
 const randomNum = function (length) {
   return Math.floor(Math.random() * (length + 1));
