@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Vibur&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <script defer src="cocktail.js"></script>
     <title>LUX // Your Personal Bar</title>
   </head>
@@ -27,18 +31,21 @@
         </form>
         <button class="btn-cocktail">Random Alcoholic Cocktail</button>
         <button class="btn-non-alcoholic">Random Non-alcoholic Cocktail</button>
-        <button class="bookmark">Bookmarked</button>
+        <button class="bookmarked">Bookmarked</button>
       </div>
     </div>
-    <div class="search_list custom-scroll">
+    <div class="search_result_container custom-scroll">
       <!--the search result will appear here-->
+      <ul class="search_list">
+        <li>Result 1</li>
+        <li>Result 2</li>
+        <li>Result 3</li>
+      </ul>
     </div>
-
-    <main class="container">
+    <div class="container">
       <div class="cocktails">
         <!-- Cocktail info will appear here-->
       </div>
-      <!-- <button class="try">Get Clinic Info</button> -->
-    </main>
+    </div>
   </body>
 </html>
