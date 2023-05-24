@@ -4,12 +4,47 @@
   box-sizing: inherit;
 }
 
+/* the browser's(aka html) default font-size is 16px, rem is a relative value,
+10rem means 160px, when scaling it is recommended to set html's font-size using "%" */
+
+/* However, em is dependent on the font-size of the nearest parent */
+@media (max-width: 1000px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 35%;
+    margin: 0;
+    padding: 0;
+  }
+  .btn-cocktail,
+  .btn-non-alcoholic,
+  .btn-alcoholic,
+  .bookmark {
+    height: 12rem !important;
+  }
+  input {
+    width: 8rem;
+    height: 11rem !important;
+  }
+  .search-btn {
+    height: 11rem !important;
+  }
+  .cocktails {
+    width: 75%;
+  }
+}
+
 html {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI";
+  /* font-family: "Segoe UI"; */
+  font-family: cursive;
   /* background-color: #f7f7f7; */
   color: #f7f7f7;
   background-color: #010a01;
@@ -48,19 +83,18 @@ body {
   /* scrollbar-track-color: #000;
   scrollbar-width: 3rem;
   scrollbar-color: #5271ff;*/
-} 
-
+}
 
 .custom-scroll::-webkit-scrollbar {
   width: 1.2rem;
 }
 
 .custom-scroll::-webkit-scrollbar-track {
-  background: #000; 
+  background: #000;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #5271ff;       
+  background: #5271ff;
 }
 
 .search {
@@ -69,13 +103,14 @@ body {
 }
 
 .search-btn {
+  cursor: pointer;
   height: 4rem;
   width: 5rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
   color: white;
   background-color: black;
   font-family: cursive;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   border: #5271ff 0.1rem solid;
@@ -83,12 +118,13 @@ body {
 
 input {
   height: 4rem;
-  width: 20rem;
+  width: 15rem;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
   background-color: navy;
   border: #5271ff 0.1rem solid;
   color: #f7f7f7;
+  font-size: 1.25rem;
   /* text-align: center; */
 }
 
@@ -117,7 +153,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .neon-text {
@@ -150,7 +186,7 @@ li {
 /* .recipe, */
 .cocktail {
   background-color: #000;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   width: 50rem;
   border-radius: 0.7rem;
   /* overflow: hidden; */
@@ -174,7 +210,7 @@ li {
 
 /* .recipe__name, */
 .cocktail__name {
-  font-family: cursive;
+  /* font-family: cursive; */
   font-size: 2rem;
   margin-bottom: 0.7rem;
   text-transform: uppercase;
@@ -182,8 +218,8 @@ li {
 
 /* .recipe__region, */
 .cocktail__type {
-  font-family: cursive;
-  font-size: 1.2rem;
+  /* font-family: cursive; */
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
   color: #888;
@@ -196,7 +232,7 @@ li {
 
 .instruction-content,
 li {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-left: 2rem;
 }
 
@@ -207,7 +243,7 @@ p {
 .recipe__row span,
 .cocktail__row span {
   display: inline-block;
-  font-family: cursive;
+  /* font-family: cursive; */
   margin-right: 2rem;
   margin-top: 0.5rem;
   font-size: 1.5rem;
@@ -229,6 +265,7 @@ p {
 .bookmark {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
+  margin-right: 1rem;
 }
 
 /* .btn-recipe, */
@@ -236,13 +273,18 @@ p {
 .btn-non-alcoholic,
 .btn-alcoholic,
 .bookmark {
-  font-family: "Vibur", cursive;
+  /* font-family: "Vibur", cursive; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.5rem;
+  font-family: cursive;
   border: #5271ff 0.1rem solid;
   background-color: #000;
-  font-size: 1.7rem;
+  font-size: 1.25rem;
   padding: 0.5rem 0.8rem;
   border-collapse: collapse;
   color: white;
   cursor: pointer;
-  margin: 1rem 0 1rem 0;
+  margin: auto;
 }
