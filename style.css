@@ -288,15 +288,10 @@ p {
   cursor: pointer;
 }
 
-/* .bookmark_btn a {
-  display: flex;
-  color: white;
-  background-color: #000;
-  text-decoration: none;
-  border: 0.1rem solid #5271ff;
-  padding: 0.25rem;
-  border-radius: 2rem;
-} */
+.added{
+  color: #000 !important;
+  background-color: white !important;
+}
 
 .bookmark_btn:hover {
   background-color: #f7f7f7;
