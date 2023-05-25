@@ -4,46 +4,92 @@ const cocktailsContainer = document.querySelector(".cocktails");
 const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
 const searchBtn = document.querySelector(".search_btn");
 const bookmarkedLink = document.querySelector(".bookmarked");
+const clearBtn = document.querySelector(".clear");
 
 // TODOs:
 // 1. allow users to search cocktail by name then render search result as list
-// 2. allow users to add cocktail to bookmark
-// 3. allow users to view bookmarked cocktails
+// 2. allow users to add cocktail to bookmark DONE
+// 3. allow users to view bookmarked cocktails (as list in a box or in cocktailsContainer?)
 // 4. add pagination
 // 5. structure js files
 
 // Extras:
 // 1. add servings calculator
 
-let bookMarked = [];
+let bookmarkedNonAlcoholic = [];
+let bookmarkedAlcoholic = [];
+
 const randomNum = function (length) {
-  return Math.floor(Math.random() * (length + 1));
+  return Math.floor(Math.random() * length);
 };
+
 const renderSearchResult = function (name) {};
 
-// Need to get the data to add it to bookmark, but how?
-const addAsBookmark = function (data) {
+const clearBookmarks = function () {
+  localStorage.removeItem("Bookmarked Alcoholic");
+  localStorage.removeItem("Bookmarked Non-alcoholic");
+};
+
+const addAsBookmarkAlcoholic = function (data) {
   document.addEventListener("click", function (e) {
-    const clicked = e.target.closest(".bookmark_btn");
-    if (clicked) {
+    if (e.target.className == "bookmark_btn") {
       // add data into bookmarked array
-      if (bookMarked.includes(data)) return;
-      bookMarked.push(data);
-      // console.log("Added!");
+      if (bookmarkedAlcoholic.includes(data)) return;
+      bookmarkedAlcoholic.push(data);
       // change the style of bookmark btn
       document.querySelector(".bookmark_btn").classList.add("added");
-      // check if data is added in
-      // console.log(bookMarked);
+      // add drink into localStorage
+      localStorage.setItem(
+        "Bookmarked Alcoholic",
+        JSON.stringify(bookmarkedAlcoholic)
+      );
     }
   });
 };
 
-const viewBookmarked = function(bookMarked){
-  // for(let i=0; i<bookMarked.length; i++){
-  //   console.log(bookMarked[i]);
-  // }
-  console.log(bookMarked);
-}
+// ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore
+// Need to get the data to add it to bookmark, but how? SOLVED
+const addAsBookmarkNonAlcoholic = function (data) {
+  document.addEventListener("click", function (e) {
+    if (e.target.className == "bookmark_btn") {
+      // add data into bookmarked array
+      if (bookmarkedNonAlcoholic.includes(data)) return;
+      bookmarkedNonAlcoholic.push(data);
+      // change the style of bookmark btn
+      document.querySelector(".bookmark_btn").classList.add("added");
+      // add drink into localStorage
+      localStorage.setItem(
+        "Bookmarked Non-alcoholic",
+        JSON.stringify(bookmarkedNonAlcoholic)
+      );
+    }
+  });
+};
+
+// getting stored value from localStorage
+const viewBookmarked = function () {
+  const nonAlcoholic = JSON.parse(localStorage.getItem("Bookmarked Alcoholic"));
+  const alcoholic = JSON.parse(
+    localStorage.getItem("Bookmarked Non-alcoholic")
+  );
+  console.log(nonAlcoholic);
+  console.log(alcoholic);
+  // How to show bookmarked drinks?
+  // const html1 = `
+  // <article class="cocktail">
+  //   <div class="cocktail__data">
+  //     <div class="cocktail_illustration">
+
+  //     </div>
+  //     <h4 class="cocktail__type"></h4>
+  //     <p class="cocktail__row"><span>Category</span></p>
+  //     <p class="cocktail__row"><span>Glass</span></p>
+  //   </div>
+  // </article>
+  // `;
+
+  // const html2=``;
+};
 
 const renderCocktail = function (data) {
   while (cocktailsContainer.firstChild) {
@@ -85,7 +131,6 @@ const renderCocktail = function (data) {
   </article>
 `;
   cocktailsContainer.insertAdjacentHTML("beforeend", html);
-  addAsBookmark(data);
 };
 
 // ISSUE: cannot generate random drink SOLVED
@@ -97,6 +142,7 @@ const getNonAlcoholic = function () {
     .then((res) => res.json())
     .then(function (data) {
       let length = data.drinks.length;
+      //console.log(length);
       let num = randomNum(length);
       let id = data.drinks[num].idDrink;
       return id;
@@ -108,7 +154,7 @@ const getNonAlcoholic = function () {
           data = data.drinks[0];
           //console.log(data);
           renderCocktail(data);
-          // addAsBookmark(data);
+          addAsBookmarkNonAlcoholic(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -132,6 +178,7 @@ const getAlcoholic = function () {
           data = data.drinks[0];
           //console.log(data);
           renderCocktail(data);
+          addAsBookmarkAlcoholic(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -140,3 +187,4 @@ const getAlcoholic = function () {
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", viewBookmarked);
+clearBtn.addEventListener("click", clearBookmarks);
