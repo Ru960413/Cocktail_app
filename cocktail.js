@@ -23,7 +23,27 @@ const randomNum = function (length) {
   return Math.floor(Math.random() * length);
 };
 
-const renderSearchResult = function (name) {};
+// render drinks as listed links
+// Q1: How to make list items clickable links?
+// can let the href of anchor tag (located inside list items) link to the drink's id, and then use one of the functions to render drink using the id provided
+
+// Q2: How to get the search value from the form input?
+const renderResult = function (data) {
+  let i = 0;
+  while (i < data.length) {
+    console.log(data[i].strDrink, data[i].strAlcoholic);
+    i++;
+  }
+};
+
+const searchCocktailByName = function (name) {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data = data.drinks;
+      renderResult(data);
+    });
+};
 
 const clearBookmarks = function () {
   localStorage.removeItem("Bookmarked Alcoholic");
