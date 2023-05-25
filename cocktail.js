@@ -3,8 +3,7 @@ const btnCocktail = document.querySelector(".btn-cocktail");
 const cocktailsContainer = document.querySelector(".cocktails");
 const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
 const searchBtn = document.querySelector(".search_btn");
-const bookmarked = document.querySelector(".bookmarked");
-const bookmarkBtn = document.querySelector(".bookmark_btn");
+const bookmarkedLink = document.querySelector(".bookmarked");
 
 // TODOs:
 // 1. allow users to search cocktail by name then render search result as list
@@ -24,9 +23,27 @@ const renderSearchResult = function (name) {};
 
 // Need to get the data to add it to bookmark, but how?
 const addAsBookmark = function (data) {
-  bookMarked.push(data);
-  console.log(bookMarked);
+  document.addEventListener("click", function (e) {
+    const clicked = e.target.closest(".bookmark_btn");
+    if (clicked) {
+      // add data into bookmarked array
+      if (bookMarked.includes(data)) return;
+      bookMarked.push(data);
+      // console.log("Added!");
+      // change the style of bookmark btn
+      document.querySelector(".bookmark_btn").classList.add("added");
+      // check if data is added in
+      // console.log(bookMarked);
+    }
+  });
 };
+
+const viewBookmarked = function(bookMarked){
+  // for(let i=0; i<bookMarked.length; i++){
+  //   console.log(bookMarked[i]);
+  // }
+  console.log(bookMarked);
+}
 
 const renderCocktail = function (data) {
   while (cocktailsContainer.firstChild) {
@@ -68,6 +85,7 @@ const renderCocktail = function (data) {
   </article>
 `;
   cocktailsContainer.insertAdjacentHTML("beforeend", html);
+  addAsBookmark(data);
 };
 
 // ISSUE: cannot generate random drink SOLVED
@@ -88,8 +106,9 @@ const getNonAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          console.log(data);
+          //console.log(data);
           renderCocktail(data);
+          // addAsBookmark(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -111,7 +130,7 @@ const getAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          console.log(data);
+          //console.log(data);
           renderCocktail(data);
         });
     })
@@ -120,7 +139,4 @@ const getAlcoholic = function () {
 
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
-
-if (bookmarkBtn) {
-  bookmarkBtn.addEventListener("click", addAsBookmark);
-}
+bookmarkedLink.addEventListener("click", viewBookmarked);
