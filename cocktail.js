@@ -5,6 +5,7 @@ const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
 const searchBtn = document.querySelector(".search_btn");
 const bookmarkedLink = document.querySelector(".bookmarked");
 const clearBtn = document.querySelector(".clear");
+const mainContainer = document.querySelector(".container");
 
 // TODOs:
 // 1. allow users to search cocktail by name then render search result as list
@@ -28,22 +29,22 @@ const randomNum = function (length) {
 // can let the href of anchor tag (located inside list items) link to the drink's id, and then use one of the functions to render drink using the id provided
 
 // Q2: How to get the search value from the form input?
-const renderResult = function (data) {
-  let i = 0;
-  while (i < data.length) {
-    console.log(data[i].strDrink, data[i].strAlcoholic);
-    i++;
-  }
-};
+// const renderResult = function (data) {
+//   let i = 0;
+//   while (i < data.length) {
+//     console.log(data[i].strDrink, data[i].strAlcoholic);
+//     i++;
+//   }
+// };
 
-const searchCocktailByName = function (name) {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
-    .then((res) => res.json())
-    .then((data) => {
-      data = data.drinks;
-      renderResult(data);
-    });
-};
+// const searchCocktailByName = function (name) {
+//   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       data = data.drinks;
+//       renderResult(data);
+//     });
+// };
 
 const clearBookmarks = function () {
   localStorage.removeItem("Bookmarked Alcoholic");
@@ -94,21 +95,31 @@ const viewBookmarked = function () {
   );
   console.log(nonAlcoholic);
   console.log(alcoholic);
+
   // How to show bookmarked drinks?
-  // const html1 = `
-  // <article class="cocktail">
-  //   <div class="cocktail__data">
-  //     <div class="cocktail_illustration">
+  // when bookmarked btn is clicked, toggle div class to "bookmarked_content_active" to show it
+  // render alcoholic and non-alcoholic drinks using localStorage objects
+  // create link for each bookmarked drinks (don't know how...)
+  const html1 = `
+  <div class="bookmarked_content_active">
+    <ul class="non_alcoholic">
+      <li class="bookmark_item"><a href="#">Smoothie</a>(non_alcoholic)</li>
+      <li class="bookmark_item"><a href="#">Coffee</a>(non_alcoholic)</li>
+      <li class="bookmark_item"><a href="#">Juice</a>(non_alcoholic)</li>
+    </ul>
+  `;
 
-  //     </div>
-  //     <h4 class="cocktail__type"></h4>
-  //     <p class="cocktail__row"><span>Category</span></p>
-  //     <p class="cocktail__row"><span>Glass</span></p>
-  //   </div>
-  // </article>
-  // `;
+  const html2 = `
+    <ul class="alcoholic">
+      <li class="bookmark_item"><a href="#">Vodka</a>(alcoholic)</li>
+      <li class="bookmark_item"><a href="#">Gin</a>(alcoholic)</li>
+      <li class="bookmark_item"><a href="#">Martini</a>(alcoholic)</li>
+    </ul>
+  </div>
+`;
 
-  // const html2=``;
+  const html = html1 + html2;
+  mainContainer.insertAdjacentHTML("beforeend", html);
 };
 
 const renderCocktail = function (data) {
@@ -207,4 +218,4 @@ const getAlcoholic = function () {
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", viewBookmarked);
-clearBtn.addEventListener("click", clearBookmarks);
+//clearBtn.addEventListener("click", clearBookmarks);
