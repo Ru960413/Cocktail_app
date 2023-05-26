@@ -1,0 +1,38 @@
+body {
+  font-family: cursive;
+}
+
+.bookmarked_content_inactive {
+  display: none;
+}
+
+.bookmarked_content_active {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  background-color: black;
+  color: white;
+  border: #5271ff 0.1rem solid;
+  border-top: 0;
+  width: 20rem;
+  border-radius: 0.7rem;
+}
+
+.title_text {
+  font-size: 1.25rem;
+  margin: 1.2rem 0 0 1.2rem;
+  text-decoration: underline;
+}
+
+.bookmark_item {
+  list-style: none;
+}
+
+.bookmark_item a {
+  color: white;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
