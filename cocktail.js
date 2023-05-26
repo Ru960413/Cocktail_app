@@ -17,8 +17,7 @@ const mainContainer = document.querySelector(".container");
 // Extras:
 // 1. add servings calculator
 
-let bookmarkedNonAlcoholic = [];
-let bookmarkedAlcoholic = [];
+let bookmarked = [];
 
 const randomNum = function (length) {
   return Math.floor(Math.random() * length);
@@ -46,86 +45,73 @@ const randomNum = function (length) {
 //     });
 // };
 
-const clearBookmarks = function () {
-  localStorage.removeItem("Bookmarked Alcoholic");
-  localStorage.removeItem("Bookmarked Non-alcoholic");
+const deleteAllBookmarks = function () {
+  localStorage.removeItem("Bookmarked");
 };
 
-const addAsBookmarkAlcoholic = function (data) {
-  document.addEventListener("click", function (e) {
-    if (e.target.className == "bookmark_btn") {
-      // add data into bookmarked array
-      if (bookmarkedAlcoholic.includes(data)) return;
-      bookmarkedAlcoholic.push(data);
-      // change the style of bookmark btn
-      document.querySelector(".bookmark_btn").classList.add("added");
-      // add drink into localStorage
-      localStorage.setItem(
-        "Bookmarked Alcoholic",
-        JSON.stringify(bookmarkedAlcoholic)
-      );
-    }
-  });
-};
-
+// Unfinished 🤯
 // ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore
-// Need to get the data to add it to bookmark, but how? SOLVED
-const addAsBookmarkNonAlcoholic = function (data) {
+// ISSUE 2: drinks are not added correctly, now every drink rendered will be added...
+const addAsBookmark = function (data) {
   document.addEventListener("click", function (e) {
-    if (e.target.className == "bookmark_btn") {
+    //const target = e.target.closest(".bookmark_btn");
+    if (e.target.className === "bookmark_btn") {
+      console.log(data);
       // add data into bookmarked array
-      if (bookmarkedNonAlcoholic.includes(data)) return;
-      bookmarkedNonAlcoholic.push(data);
+      if (bookmarked.includes(data)) return;
+      bookmarked.push(data);
+      // // console.log(bookmarked);
       // change the style of bookmark btn
       document.querySelector(".bookmark_btn").classList.add("added");
       // add drink into localStorage
-      localStorage.setItem(
-        "Bookmarked Non-alcoholic",
-        JSON.stringify(bookmarkedNonAlcoholic)
-      );
+      localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
     }
   });
 };
 
 // getting stored value from localStorage
-const viewBookmarked = function () {
-  const nonAlcoholic = JSON.parse(localStorage.getItem("Bookmarked Alcoholic"));
-  const alcoholic = JSON.parse(
-    localStorage.getItem("Bookmarked Non-alcoholic")
-  );
-  console.log(nonAlcoholic);
-  console.log(alcoholic);
+const getBookmarked = function () {
+  const bookmarkedDrinks = JSON.parse(localStorage.getItem("Bookmarked"));
+  return bookmarkedDrinks
+};
+
+// Unfinished
+const renderBookmarked = function(bookmarkedDrinks){
+  let html = ``;
+  bookmarkedDrinks.forEach((drink) => console.log(drink));
 
   // How to show bookmarked drinks?
-  // when bookmarked btn is clicked, toggle div class to "bookmarked_content_active" to show it
+  // when bookmarked btn is clicked, add the div containing bookmarked content to show it
   // render alcoholic and non-alcoholic drinks using localStorage objects
   // create link for each bookmarked drinks (don't know how...)
-  const html1 = `
-  <div class="bookmarked_content_active">
-    <ul class="non_alcoholic">
-      <li class="bookmark_item"><a href="#">Smoothie</a>(non_alcoholic)</li>
-      <li class="bookmark_item"><a href="#">Coffee</a>(non_alcoholic)</li>
-      <li class="bookmark_item"><a href="#">Juice</a>(non_alcoholic)</li>
-    </ul>
-  `;
 
-  const html2 = `
-    <ul class="alcoholic">
-      <li class="bookmark_item"><a href="#">Vodka</a>(alcoholic)</li>
-      <li class="bookmark_item"><a href="#">Gin</a>(alcoholic)</li>
-      <li class="bookmark_item"><a href="#">Martini</a>(alcoholic)</li>
-    </ul>
-  </div>
-`;
+  // if (drink.strAlcoholic == "Non alcoholic")
+  //   const html += `
+  //   <div class="bookmarked_content_active">
+  //     <ul class="non_alcoholic">
+  //       <li class="bookmark_item"><a href="#">Smoothie</a>(non_alcoholic)</li>
+  //       <li class="bookmark_item"><a href="#">Coffee</a>(non_alcoholic)</li>
+  //       <li class="bookmark_item"><a href="#">Juice</a>(non_alcoholic)</li>
+  //     </ul>
+  //   `;
+  // if (drink.strAlcoholic == "Non alcoholic")
+  //   const html += `
+  //     <ul class="alcoholic">
+  //       <li class="bookmark_item"><a href="#">Vodka</a>(alcoholic)</li>
+  //       <li class="bookmark_item"><a href="#">Gin</a>(alcoholic)</li>
+  //       <li class="bookmark_item"><a href="#">Martini</a>(alcoholic)</li>
+  //     </ul>
+  //   </div>
+  // `;
 
-  const html = html1 + html2;
   mainContainer.insertAdjacentHTML("beforeend", html);
-};
+}
 
 const renderCocktail = function (data) {
   while (cocktailsContainer.firstChild) {
     cocktailsContainer.removeChild(cocktailsContainer.firstChild);
   }
+
   const html = `
   <article class="cocktail">
     <img class="cocktail__img" src="${data.strDrinkThumb}" />
@@ -183,9 +169,9 @@ const getNonAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          //console.log(data);
+          console.log(data);
           renderCocktail(data);
-          addAsBookmarkNonAlcoholic(data);
+          addAsBookmark(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -209,7 +195,7 @@ const getAlcoholic = function () {
           data = data.drinks[0];
           //console.log(data);
           renderCocktail(data);
-          addAsBookmarkAlcoholic(data);
+          addAsBookmark(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -217,5 +203,5 @@ const getAlcoholic = function () {
 
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
-bookmarkedLink.addEventListener("click", viewBookmarked);
-//clearBtn.addEventListener("click", clearBookmarks);
+bookmarkedLink.addEventListener("click", getBookmarked);
+clearBtn.addEventListener("click", deleteAllBookmarks);
