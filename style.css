@@ -50,7 +50,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(8, 1fr);
-  background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
+  background-color: #000;
+  /* background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png"); */
 }
 
 .container {
@@ -60,7 +61,9 @@ body {
   grid-column: 2 / 2;
   grid-row: 2 / 8;
   border: #5271ff 0.1rem solid;
+  border-top: 0;
   border-collapse: collapse;
+  background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
 }
 
 .header {
@@ -77,9 +80,7 @@ body {
   border: #5271ff 0.1rem solid;
   border-collapse: collapse;
   overflow: scroll;
-  /* scrollbar-track-color: #000;
-  scrollbar-width: 3rem;
-  scrollbar-color: #5271ff;*/
+  background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -184,8 +185,9 @@ li {
   /* margin-bottom: 8rem; */
   display: flex;
   font-size: 2rem;
-  opacity: 0;
-  transition: opacity 1s;
+  /* opacity: 0;
+  transition: opacity 1s; */
+  background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
 }
 
 /* .recipe, */
