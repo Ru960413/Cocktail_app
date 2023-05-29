@@ -3,7 +3,7 @@ body {
 }
 
 .close-btn_active {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   color: white;
   background-color: #5271ff;
   height: 2rem;
@@ -16,7 +16,7 @@ body {
   /* display: inline-block; */
 }
 
-.close-btn_active:hover{
+.close-btn_active:hover {
   background-color: rgb(41, 41, 133);
 }
 
@@ -60,12 +60,27 @@ body {
 }
 
 .bookmark_item:hover {
-  background-color: #5271ff;
+  border: #5271ff 0.1rem solid;
+  border-left: 0;
+  border-right: 0;
 }
 
-.bookmark_item a {
+.bookmark_item div {
   color: white;
-  padding: 0.5rem;
+  padding: 0.3rem;
   font-size: 1.2rem;
   text-decoration: none;
+  cursor: pointer;
+}
+.delete{
+  /* text-transform: uppercase; */
+  padding: 0.1rem;
+  display: inline-block;
+  border: #5271ff 0.1rem solid;
+  border-radius: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.delete:hover{
+  background-color: red;
 }
