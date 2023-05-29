@@ -2,22 +2,51 @@ body {
   font-family: cursive;
 }
 
-.bookmarked_content_inactive {
+.close-btn_active {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: #5271ff;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  padding: 0.6rem;
+  position: absolute;
+  right: 1.5rem;
+  cursor: pointer;
+  /* display: inline-block; */
+}
+
+.close-btn_active:hover{
+  background-color: rgb(41, 41, 133);
+}
+
+.bookmarked_content_container_inactive,
+.close-btn_inactive {
   display: none;
 }
 
-.bookmarked_content_active {
+.bookmarked_content_container_active {
   position: absolute;
-  right: 0px;
+  right: 3rem;
   display: flex;
   flex-direction: column;
-  /* text-align: center; */
   background-color: black;
   color: white;
   border: #5271ff 0.1rem solid;
-  border-top: 0;
-  width: 20rem;
+  /* border-top: 0; */
+  width: 23rem;
   border-radius: 0.7rem;
+  margin-top: 1rem;
+}
+
+.bookmark_list {
+  margin: 0;
+}
+
+.bookmark_item_img {
+  width: 2rem;
+  height: auto;
+  border-radius: 30%;
 }
 
 .title_text {
@@ -28,6 +57,10 @@ body {
 
 .bookmark_item {
   list-style: none;
+}
+
+.bookmark_item:hover {
+  background-color: #5271ff;
 }
 
 .bookmark_item a {
