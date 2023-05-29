@@ -11,13 +11,14 @@ const bookmarkContainer = document.querySelector(
 );
 const bookmarkList = document.querySelector(".bookmark_list");
 const closeBtn = document.querySelector(".close-btn");
-
+const deleteBtns = document.querySelectorAll(".delete");
 // TODOs:
-// 1. allow users to add cocktail to bookmark DONE
-// 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
+// DONE 1. allow users to add cocktail to bookmark
+// DONE 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
 // 3. allow users to search cocktail by name then render search result as list
-// 4. add pagination
-// 5. structure js files
+// 4. allow user to remove item from bookmark
+// 5. add pagination
+// 6. structure js files
 
 // Extras:
 // 1. add servings calculator
@@ -54,8 +55,28 @@ const deleteAllBookmarks = function () {
   localStorage.removeItem("Bookmarked");
 };
 
+// Not working...
+// const deleteBookmarkedItem = function () {
+//   if (confirm("Are you sure you want to delete this beverage?")) {
+//     const bookmarkEl = e.target.closest(".bookmark_item");
+//     localStorage.getItem("Bookmarked");
+//     const bookmarks = JSON.parse(localStorage.getItem("Bookmarked"));
+//     for (let i = 0; i < bookmarks.length; i++) {
+//       if ((bookmarks[i] = bookmarkEl.getAttribute("data-id"))) {
+//         bookmarks.splice(i, 1);
+//         break;
+//       }
+//     }
+//     localStorage.setItem("Bookmarked", JSON.stringify(bookmarks));
+//     location.reload();
+//     alert("Deleted!");
+//   } else {
+//     alert("Cancelled");
+//   }
+// };
+
 // Unfinished
-// ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore
+// ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore kinda SOLVED (add the class again)
 // ISSUE 2: drinks are not added correctly, now every drink rendered will be added... SOLVED
 
 // Add the drink's id to localStorage, when bookmark button is clicked
@@ -85,7 +106,7 @@ const getDrinkFromId = function (drinkIds) {
       .then((res) => res.json())
       .then((data) => {
         data = data.drinks[0];
-        console.log(data);
+        //console.log(data);
         // render bookmarked drink list using data
         renderList(data);
       })
@@ -98,12 +119,13 @@ const getDrinkFromId = function (drinkIds) {
 const renderList = function (data) {
   let html = ``;
   html += `
-        <li class="bookmark_item"><a href="#"><img class="bookmark_item_img" src="${data.strDrinkThumb}"/> ${data.strDrink} (${data.strAlcoholic})</a></li>`;
+        <li class="bookmark_item"><div class="link" data-id="${data.idDrink}" onClick="renderDrinkById(${data.idDrink})"><img class="bookmark_item_img" src="${data.strDrinkThumb}"/> ${data.strDrink} (${data.strAlcoholic})</div><div class="delete">Delete</div></li>`;
 
   bookmarkList.insertAdjacentHTML("beforeend", html);
 };
 
 const getBookmarkedItems = function () {
+  bookmarkList.innerHTML = "";
   bookmarkContainer.classList.remove("bookmarked_content_container_inactive");
   bookmarkContainer.classList.add("bookmarked_content_container_active");
   closeBtn.classList.remove("close-btn_inactive");
@@ -122,6 +144,23 @@ const closeBookmarkList = function () {
   closeBtn.classList.add("close-btn_inactive");
   closeBtn.classList.remove("close-btn_active");
   bookmarkList.innerHTML = "";
+};
+
+const renderDrinkById = function (id) {
+  while (cocktailsContainer.firstChild) {
+    cocktailsContainer.removeChild(cocktailsContainer.firstChild);
+  }
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data = data.drinks[0];
+      //console.log(data);
+      renderCocktail(data);
+      document.querySelector(".bookmark_btn").classList.add("added");
+      // deleteBtns.forEach((deleteBtn) =>
+      //   deleteBtn.addEventListener("click", deleteBookmarkedItem)
+      // );
+    });
 };
 
 const renderCocktail = function (data) {
@@ -188,7 +227,7 @@ const getNonAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          console.log(data);
+          //console.log(data);
           renderCocktail(data);
         });
     })
@@ -211,7 +250,7 @@ const getAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          console.log(data);
+          //console.log(data);
           renderCocktail(data);
         });
     })
@@ -221,4 +260,5 @@ const getAlcoholic = function () {
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", getBookmarkedItems);
-clearBtn.addEventListener("click", deleteAllBookmarks);
+// clearBtn.addEventListener("click", deleteAllBookmarks);
+closeBtn.addEventListener("click", closeBookmarkList);
