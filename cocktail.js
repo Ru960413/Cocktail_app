@@ -6,11 +6,16 @@ const searchBtn = document.querySelector(".search_btn");
 const bookmarkedLink = document.querySelector(".bookmarked");
 const clearBtn = document.querySelector(".clear");
 const mainContainer = document.querySelector(".container");
+const bookmarkContainer = document.querySelector(
+  ".bookmarked_content_container"
+);
+const bookmarkList = document.querySelector(".bookmark_list");
+const closeBtn = document.querySelector(".close-btn");
 
 // TODOs:
-// 1. allow users to search cocktail by name then render search result as list
-// 2. allow users to add cocktail to bookmark DONE
-// 3. allow users to view bookmarked cocktails (as list in a box or in cocktailsContainer?)
+// 1. allow users to add cocktail to bookmark DONE
+// 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
+// 3. allow users to search cocktail by name then render search result as list
 // 4. add pagination
 // 5. structure js files
 
@@ -66,17 +71,15 @@ const addAsBookmark = function (id) {
 };
 
 // Get stored ids from localStorage
-const getBookmarked = function () {
+const getLocalStorage = function () {
   const drinkIds = JSON.parse(localStorage.getItem("Bookmarked"));
-  console.log(drinkIds);
+  // console.log(drinkIds);
   return drinkIds;
 };
 
 // Using the id to get the drink's data
 // when bookmarked btn is clicked, get drink data from the id stored in localStorage
-
 const getDrinkFromId = function (drinkIds) {
-  drinkIds = getBookmarked();
   drinkIds.forEach((drinkId) =>
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
       .then((res) => res.json())
@@ -89,31 +92,36 @@ const getDrinkFromId = function (drinkIds) {
   );
 };
 
-// TODO: re-design list for showing both search result items and bookmarked items
-// render bookmarked items as a list using the drinks' ids stored in localStorage(need to get strDrink, strAlcoholic and strDrinkThumb)
+// TODO: re-design list for showing both search result items and bookmarked items DONE
+// render bookmarked items as a list using the drinks' ids stored in localStorage(need to get strDrink, strAlcoholic and strDrinkThumb) DONE
 // and then create link for each bookmarked drinks (don't know how...)
 const renderList = function (data) {
   let html = ``;
-  // if (drink.strAlcoholic == "Non alcoholic")
-  //   const html += `
-  //   <div class="bookmarked_content_active">
-  //     <ul class="non_alcoholic">
-  //       <li class="bookmark_item"><a href="#">Smoothie</a>(non_alcoholic)</li>
-  //       <li class="bookmark_item"><a href="#">Coffee</a>(non_alcoholic)</li>
-  //       <li class="bookmark_item"><a href="#">Juice</a>(non_alcoholic)</li>
-  //     </ul>
-  //   `;
-  // if (drink.strAlcoholic == "Non alcoholic")
-  //   const html += `
-  //     <ul class="alcoholic">
-  //       <li class="bookmark_item"><a href="#">Vodka</a>(alcoholic)</li>
-  //       <li class="bookmark_item"><a href="#">Gin</a>(alcoholic)</li>
-  //       <li class="bookmark_item"><a href="#">Martini</a>(alcoholic)</li>
-  //     </ul>
-  //   </div>
-  // `;
+  html += `
+        <li class="bookmark_item"><a href="#"><img class="bookmark_item_img" src="${data.strDrinkThumb}"/> ${data.strDrink} (${data.strAlcoholic})</a></li>`;
 
-  // mainContainer.insertAdjacentHTML("beforeend", html);
+  bookmarkList.insertAdjacentHTML("beforeend", html);
+};
+
+const getBookmarkedItems = function () {
+  bookmarkContainer.classList.remove("bookmarked_content_container_inactive");
+  bookmarkContainer.classList.add("bookmarked_content_container_active");
+  closeBtn.classList.remove("close-btn_inactive");
+  closeBtn.classList.add("close-btn_active");
+  let drinkIds = getLocalStorage();
+  if (!drinkIds) {
+    bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
+  } else {
+    getDrinkFromId(drinkIds);
+  }
+};
+
+const closeBookmarkList = function () {
+  bookmarkContainer.classList.add("bookmarked_content_container_inactive");
+  bookmarkContainer.classList.remove("bookmarked_content_container_active");
+  closeBtn.classList.add("close-btn_inactive");
+  closeBtn.classList.remove("close-btn_active");
+  bookmarkList.innerHTML = "";
 };
 
 const renderCocktail = function (data) {
@@ -212,7 +220,5 @@ const getAlcoholic = function () {
 
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
-bookmarkedLink.addEventListener("click", getBookmarked);
+bookmarkedLink.addEventListener("click", getBookmarkedItems);
 clearBtn.addEventListener("click", deleteAllBookmarks);
-
-// getDrinksFromId();
