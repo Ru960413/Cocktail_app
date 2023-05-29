@@ -49,42 +49,51 @@ const deleteAllBookmarks = function () {
   localStorage.removeItem("Bookmarked");
 };
 
-// Unfinished 🤯
-// ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore
-// ISSUE 2: drinks are not added correctly, now every drink rendered will be added...
-const addAsBookmark = function (data) {
-  document.addEventListener("click", function (e) {
-    //const target = e.target.closest(".bookmark_btn");
-    if (e.target.className === "bookmark_btn") {
-      console.log(data);
-      // add data into bookmarked array
-      if (bookmarked.includes(data)) return;
-      bookmarked.push(data);
-      // // console.log(bookmarked);
-      // change the style of bookmark btn
-      document.querySelector(".bookmark_btn").classList.add("added");
-      // add drink into localStorage
-      localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
-    }
-  });
-};
-
-// getting stored value from localStorage
-const getBookmarked = function () {
-  const bookmarkedDrinks = JSON.parse(localStorage.getItem("Bookmarked"));
-  return bookmarkedDrinks
-};
-
 // Unfinished
-const renderBookmarked = function(bookmarkedDrinks){
+// ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore
+// ISSUE 2: drinks are not added correctly, now every drink rendered will be added... SOLVED
+
+// Add the drink's id to localStorage, when bookmark button is clicked
+const addAsBookmark = function (id) {
+  // add id into bookmarked array
+  if (bookmarked.includes(id)) return;
+  bookmarked.push(id);
+  //console.log(bookmarked);
+  // change the style of bookmark btn
+  document.querySelector(".bookmark_btn").classList.add("added");
+  // add drink into localStorage
+  localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
+};
+
+// Get stored ids from localStorage
+const getBookmarked = function () {
+  const drinkIds = JSON.parse(localStorage.getItem("Bookmarked"));
+  console.log(drinkIds);
+  return drinkIds;
+};
+
+// Using the id to get the drink's data
+// when bookmarked btn is clicked, get drink data from the id stored in localStorage
+
+const getDrinkFromId = function (drinkIds) {
+  drinkIds = getBookmarked();
+  drinkIds.forEach((drinkId) =>
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        data = data.drinks[0];
+        console.log(data);
+        // render bookmarked drink list using data
+        renderList(data);
+      })
+  );
+};
+
+// TODO: re-design list for showing both search result items and bookmarked items
+// render bookmarked items as a list using the drinks' ids stored in localStorage(need to get strDrink, strAlcoholic and strDrinkThumb)
+// and then create link for each bookmarked drinks (don't know how...)
+const renderList = function (data) {
   let html = ``;
-  bookmarkedDrinks.forEach((drink) => console.log(drink));
-
-  // How to show bookmarked drinks?
-  // when bookmarked btn is clicked, add the div containing bookmarked content to show it
-  // render alcoholic and non-alcoholic drinks using localStorage objects
-  // create link for each bookmarked drinks (don't know how...)
-
   // if (drink.strAlcoholic == "Non alcoholic")
   //   const html += `
   //   <div class="bookmarked_content_active">
@@ -104,8 +113,8 @@ const renderBookmarked = function(bookmarkedDrinks){
   //   </div>
   // `;
 
-  mainContainer.insertAdjacentHTML("beforeend", html);
-}
+  // mainContainer.insertAdjacentHTML("beforeend", html);
+};
 
 const renderCocktail = function (data) {
   while (cocktailsContainer.firstChild) {
@@ -118,7 +127,9 @@ const renderCocktail = function (data) {
     <div class="cocktail__data">
       <div class="cocktail_illustration">
         <h3 class="cocktail__name">${data.strDrink}</h3>
-        <div class="bookmark_btn"><span class="material-symbols-outlined">
+        <div class="bookmark_btn" onClick="addAsBookmark(${
+          data.idDrink
+        })"><span class="material-symbols-outlined">
         bookmark</span>Bookmark</div>
       </div>
       <h4 class="cocktail__type">${data.strAlcoholic}</h4>
@@ -171,7 +182,6 @@ const getNonAlcoholic = function () {
           data = data.drinks[0];
           console.log(data);
           renderCocktail(data);
-          addAsBookmark(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -193,9 +203,8 @@ const getAlcoholic = function () {
         .then((res) => res.json())
         .then((data) => {
           data = data.drinks[0];
-          //console.log(data);
+          console.log(data);
           renderCocktail(data);
-          addAsBookmark(data);
         });
     })
     .finally((cocktailsContainer.style.opacity = 1));
@@ -205,3 +214,5 @@ btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", getBookmarked);
 clearBtn.addEventListener("click", deleteAllBookmarks);
+
+// getDrinksFromId();
