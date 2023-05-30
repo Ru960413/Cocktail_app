@@ -56,24 +56,26 @@ const deleteAllBookmarks = function () {
 };
 
 // Not working...
-// const deleteBookmarkedItem = function () {
-//   if (confirm("Are you sure you want to delete this beverage?")) {
-//     const bookmarkEl = e.target.closest(".bookmark_item");
-//     localStorage.getItem("Bookmarked");
-//     const bookmarks = JSON.parse(localStorage.getItem("Bookmarked"));
-//     for (let i = 0; i < bookmarks.length; i++) {
-//       if ((bookmarks[i] = bookmarkEl.getAttribute("data-id"))) {
-//         bookmarks.splice(i, 1);
-//         break;
-//       }
-//     }
-//     localStorage.setItem("Bookmarked", JSON.stringify(bookmarks));
-//     location.reload();
-//     alert("Deleted!");
-//   } else {
-//     alert("Cancelled");
-//   }
-// };
+const deleteBookmarkedItem = function (id) {
+  // 可以用drink id... SOLVED
+  if (confirm("Do you want to delete this beverage?")) {
+    const bookmark_id = id;
+    //console.log(bookmark_id);
+    localStorage.getItem("Bookmarked");
+    const bookmarks = JSON.parse(localStorage.getItem("Bookmarked"));
+    for (let i = 0; i < bookmarks.length; i++) {
+      if ((bookmarks[i] = bookmark_id)) {
+        bookmarks.splice(i, 1);
+        break;
+      }
+    }
+    localStorage.setItem("Bookmarked", JSON.stringify(bookmarks));
+    location.reload();
+    alert("Deleted!");
+  } else {
+    alert("Cancelled");
+  }
+};
 
 // Unfinished
 // ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore kinda SOLVED (add the class again)
@@ -86,9 +88,18 @@ const addAsBookmark = function (id) {
   bookmarked.push(id);
   //console.log(bookmarked);
   // change the style of bookmark btn
-  document.querySelector(".bookmark_btn").classList.add("added");
-  // add drink into localStorage
-  localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
+  if (document.querySelector(".bookmark_btn").classList.contains("added")) {
+    deleteBookmarkedItem(id);
+  } else {
+    document.querySelector(".bookmark_btn").classList.add("added");
+    document.querySelector(
+      ".bookmark_btn"
+    ).innerHTML = `<span class="material-symbols-outlined">
+  bookmark_added
+  </span>Bookmarked`;
+    // add drink into localStorage
+    localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
+  }
 };
 
 // Get stored ids from localStorage
@@ -131,7 +142,7 @@ const getBookmarkedItems = function () {
   closeBtn.classList.remove("close-btn_inactive");
   closeBtn.classList.add("close-btn_active");
   let drinkIds = getLocalStorage();
-  if (!drinkIds) {
+  if (!drinkIds || !drinkIds.length) {
     bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
   } else {
     getDrinkFromId(drinkIds);
@@ -157,9 +168,11 @@ const renderDrinkById = function (id) {
       //console.log(data);
       renderCocktail(data);
       document.querySelector(".bookmark_btn").classList.add("added");
-      // deleteBtns.forEach((deleteBtn) =>
-      //   deleteBtn.addEventListener("click", deleteBookmarkedItem)
-      // );
+      document.querySelector(
+        ".bookmark_btn"
+      ).innerHTML = `<span class="material-symbols-outlined">
+      bookmark_added
+      </span>Bookmarked`;
     });
 };
 
