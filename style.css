@@ -98,10 +98,9 @@ body {
 .search_list li {
   display: flex;
   flex-direction: column;
-  padding: 2rem 3.5rem;
-  border: 0.2rem solid white;
-  font-size: 1.8rem;
+  padding: 2rem 5rem;
 }
+
 .search {
   display: flex;
   align-items: center;
@@ -131,7 +130,7 @@ input {
   border: #5271ff 0.1rem solid;
   color: #f7f7f7;
   font-size: 1.25rem;
-  /* text-align: center; */
+  text-align: center;
 }
 
 .neon-text-container {
@@ -217,7 +216,6 @@ li {
 
 /* .recipe__name, */
 .cocktail__name {
-  /* font-family: cursive; */
   font-size: 2rem;
   margin-bottom: 0.7rem;
   text-transform: uppercase;
@@ -290,7 +288,7 @@ p {
   cursor: pointer;
 }
 
-.added{
+.added {
   color: #000 !important;
   background-color: white !important;
 }
