@@ -15,8 +15,8 @@ const deleteBtns = document.querySelectorAll(".delete");
 // TODOs:
 // DONE 1. allow users to add cocktail to bookmark
 // DONE 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
-// 3. allow users to search cocktail by name then render search result as list
-// 4. allow user to remove item from bookmark
+// DONE 3. allow user to remove item from bookmark
+// 4. allow users to search cocktail by name then render search result as list
 // 5. add pagination
 // 6. structure js files
 
