@@ -2,7 +2,7 @@ body {
   font-family: cursive;
 }
 
-.close-btn_active {
+.close_btn_active {
   font-family: "Courier New", Courier, monospace;
   color: white;
   background-color: #5271ff;
@@ -16,12 +16,12 @@ body {
   z-index: 10;
 }
 
-.close-btn_active:hover {
+.close_btn_active:hover {
   background-color: rgb(41, 41, 133);
 }
 
 .bookmarked_content_container_inactive,
-.close-btn_inactive {
+.close_btn_inactive {
   display: none;
 }
 
@@ -47,10 +47,10 @@ body {
   border-radius: 30%;
 }
 
-.bookmark_item,
+/* .bookmark_item,
 .list_item {
   list-style: none;
-}
+} */
 
 .bookmark_item:hover,
 .list_item:hover {
@@ -74,6 +74,9 @@ body {
   margin-right: 1rem;
 }
 .list_item {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
   font-size: 1.2rem;
   cursor: pointer;
 }

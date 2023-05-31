@@ -26,20 +26,20 @@
     padding: 0;
   }
   /* .btn-non-alcoholic, */
-  .btn-cocktail,
+  .btn_cocktail,
   .bookmarked {
     height: 13rem !important;
     width: 17rem;
   }
 
-  .btn-non-alcoholic {
+  .btn_non_alcoholic {
     display: none !important;
   }
   input {
     width: 12rem !important;
     height: 11rem !important;
   }
-  .search-btn {
+  .search_btn {
     height: 11rem !important;
     width: auto !important;
   }
@@ -121,18 +121,12 @@ body {
   background: #5271ff;
 }
 
-.search_list li {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 3rem;
-}
-
 .search {
   display: flex;
   align-items: center;
 }
 
-.search-btn {
+.search_btn {
   cursor: pointer;
   height: 4rem;
   width: 5rem;
@@ -154,8 +148,10 @@ input {
   border-bottom-left-radius: 2rem;
   background-color: navy;
   border: #5271ff 0.1rem solid;
+  border-collapse: collapse;
   color: #f7f7f7;
   font-size: 1.25rem;
+  font-family: cursive;
   text-align: center;
 }
 
@@ -197,7 +193,6 @@ h2 {
 
 .nav {
   display: flex;
-  /* flex-direction: column; */
 }
 
 li {
@@ -209,11 +204,10 @@ li {
 
 /* .recipes, */
 .cocktails {
-  /* margin-bottom: 8rem; */
   display: flex;
   font-size: 2rem;
-  /* opacity: 0;
-  transition: opacity 1s; */
+  /*opacity: 0;
+ transition: opacity 1s; */
   background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
 }
 
@@ -223,7 +217,6 @@ li {
   font-size: 1.25rem;
   width: 50rem;
   border-radius: 0.7rem;
-  /* overflow: hidden; */
 }
 
 /* .recipe__img, */
@@ -264,7 +257,7 @@ li {
 }
 
 .instruction-content,
-li {
+.cocktail__data li {
   font-size: 1.25rem;
   margin-left: 2rem;
 }
@@ -276,21 +269,20 @@ p {
 .recipe__row span,
 .cocktail__row span {
   display: inline-block;
-  /* font-family: cursive; */
   margin-right: 2rem;
   margin-top: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.btn-cocktail:hover,
-.btn-non-alcoholic:hover,
+.btn_cocktail:hover,
+.btn_non_alcoholic:hover,
 .bookmarked:hover,
-.search-btn:hover {
+.search_btn:hover {
   background-color: #5271ff;
 }
 
-.btn-cocktail {
+.btn_cocktail {
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
 }
@@ -327,11 +319,10 @@ p {
 }
 
 /* .btn-recipe, */
-.btn-cocktail,
-.btn-non-alcoholic,
-.btn-alcoholic,
+.btn_cocktail,
+.btn_non_alcoholic,
+.btn_alcoholic,
 .bookmarked {
-  /* font-family: "Vibur", cursive; */
   display: flex;
   justify-content: center;
   align-items: center;
