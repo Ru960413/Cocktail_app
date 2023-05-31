@@ -1,8 +1,8 @@
 "use strict";
-const btnCocktail = document.querySelector(".btn-cocktail");
+const btnCocktail = document.querySelector(".btn_cocktail");
 const cocktailsContainer = document.querySelector(".cocktails");
-const btnNonAlcoholic = document.querySelector(".btn-non-alcoholic");
-const searchBtn = document.querySelector(".search-btn");
+const btnNonAlcoholic = document.querySelector(".btn_non_alcoholic");
+const searchBtn = document.querySelector(".search_btn");
 const bookmarkedLink = document.querySelector(".bookmarked");
 const clearBtn = document.querySelector(".clear");
 const mainContainer = document.querySelector(".container");
@@ -10,7 +10,7 @@ const bookmarkContainer = document.querySelector(
   ".bookmarked_content_container"
 );
 const bookmarkList = document.querySelector(".bookmark_list");
-const closeBtn = document.querySelector(".close-btn");
+const closeBtn = document.querySelector(".close_btn");
 const searchList = document.querySelector(".search_list");
 const inputCocktail = document.getElementById("cocktail");
 
@@ -19,7 +19,7 @@ const inputCocktail = document.getElementById("cocktail");
 // DONE 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
 // DONE 3. allow user to remove item from bookmark
 // DONE 4. allow users to search cocktail by name then render search result as list
-// 5. add pagination
+// 5. add pagination (pending...)
 // 6. structure js files, clean up code
 // 7. Solve bookmark issue
 
@@ -43,7 +43,9 @@ bookmark_added
 
 // When render, if the drink's id is saved in localStorage then show "bookmarked"
 // let drinkIds = getLocalStorage();
-// if (drinkIds.includes(id)) {
+// if (drinkIds.includes(${
+//   data.idDrink
+// })) {
 //   document.querySelector(".bookmark_btn").classList.add("added");
 //   document.querySelector(
 //     ".bookmark_btn"
@@ -128,7 +130,7 @@ const deleteBookmarkedItem = function (id) {
 };
 
 // ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore kinda SOLVED (add the class again)--> need improvement
-// <SOLVED> ISSUE 2: drinks are not added correctly, now every drink rendered will be added... 
+// <SOLVED> ISSUE 2: drinks are not added correctly, now every drink rendered will be added...
 
 // Add the drink's id to localStorage, when bookmark button is clicked
 const addAsBookmark = function (id) {
@@ -173,7 +175,7 @@ const getDrinkFromId = function (drinkIds) {
   );
 };
 
-// TODO: re-design list for showing both search result items and bookmarked items DONE
+//<DONE> TODO: re-design list for showing both search result items and bookmarked items
 // render bookmarked items as a list using the drinks' ids stored in localStorage(need to get strDrink, strAlcoholic and strDrinkThumb) DONE
 // and then create link for each bookmarked drinks DONE
 const renderList = function (data) {
@@ -188,8 +190,8 @@ const getBookmarkedItems = function () {
   bookmarkList.innerHTML = "";
   bookmarkContainer.classList.remove("bookmarked_content_container_inactive");
   bookmarkContainer.classList.add("bookmarked_content_container_active");
-  closeBtn.classList.remove("close-btn_inactive");
-  closeBtn.classList.add("close-btn_active");
+  closeBtn.classList.remove("close_btn_inactive");
+  closeBtn.classList.add("close_btn_active");
   let drinkIds = getLocalStorage();
   if (!drinkIds) {
     bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
@@ -201,8 +203,8 @@ const getBookmarkedItems = function () {
 const closeBookmarkList = function () {
   bookmarkContainer.classList.add("bookmarked_content_container_inactive");
   bookmarkContainer.classList.remove("bookmarked_content_container_active");
-  closeBtn.classList.add("close-btn_inactive");
-  closeBtn.classList.remove("close-btn_active");
+  closeBtn.classList.add("close_btn_inactive");
+  closeBtn.classList.remove("close_btn_active");
   bookmarkList.innerHTML = "";
 };
 
@@ -269,7 +271,7 @@ const renderCocktail = function (data) {
   cocktailsContainer.insertAdjacentHTML("beforeend", html);
 };
 
-// <SOLVED> ISSUE: cannot generate random drink 
+// <SOLVED> ISSUE: cannot generate random drink
 // Can only get the id of drink, need to use id to get other details (chaining promises)
 const getNonAlcoholic = function () {
   fetch(
@@ -289,11 +291,10 @@ const getNonAlcoholic = function () {
           data = data.drinks[0];
           renderCocktail(data);
         });
-    })
-    .finally((cocktailsContainer.style.opacity = 1));
+    });
 };
 
-// <SOLVED> ISSUE: cannot generate random drink 
+// <SOLVED> ISSUE: cannot generate random drink
 // Can only get the id of drink, need to use id to get other details (chaining promises)
 const getAlcoholic = function () {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`)
@@ -311,8 +312,7 @@ const getAlcoholic = function () {
           data = data.drinks[0];
           renderCocktail(data);
         });
-    })
-    .finally((cocktailsContainer.style.opacity = 1));
+    });
 };
 
 btnCocktail.addEventListener("click", getAlcoholic);
