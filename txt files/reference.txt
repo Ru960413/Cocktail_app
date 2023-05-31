@@ -6,5 +6,6 @@
     - https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
 
 
-
-https://stackoverflow.com/questions/12240814/how-does-one-make-the-whole-of-a-list-item-clickable
+To read:
+https://webdesign.tutsplus.com/tutorials/pagination-with-vanilla-javascript--cms-41896
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions
