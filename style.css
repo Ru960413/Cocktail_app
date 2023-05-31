@@ -77,6 +77,8 @@ body {
   display: flex;
   grid-column: 1 / 2;
   grid-row: 2 / 8;
+  height: 50rem; /* make this responsive! */
+  width: auto;
   border: #5271ff 0.1rem solid;
   border-collapse: collapse;
   overflow: scroll;
@@ -98,7 +100,7 @@ body {
 .search_list li {
   display: flex;
   flex-direction: column;
-  padding: 2rem 5rem;
+  padding: 2rem 4rem;
 }
 
 .search {
@@ -136,9 +138,11 @@ input {
 .neon-text-container {
   display: flex;
   justify-content: flex-start;
+  height: 8rem; /* make this responsive! */
+  width: auto;
   flex-direction: column;
   border: 0.2rem solid #fff;
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 2rem;
   padding: 1em;
   box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #5271ff,
