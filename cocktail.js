@@ -12,6 +12,7 @@ const bookmarkContainer = document.querySelector(
 const bookmarkList = document.querySelector(".bookmark_list");
 const closeBtn = document.querySelector(".close-btn");
 const searchList = document.querySelector(".search_list");
+const inputCocktail = document.getElementById("cocktail");
 
 // TODOs:
 // DONE 1. allow users to add cocktail to bookmark
@@ -30,6 +31,15 @@ const randomNum = function (length) {
   return Math.floor(Math.random() * length);
 };
 
+const setItemAsBookmarked = function () {
+  document.querySelector(".bookmark_btn").classList.add("added");
+  document.querySelector(
+    ".bookmark_btn"
+  ).innerHTML = `<span class="material-symbols-outlined">
+bookmark_added
+</span>Bookmarked`;
+};
+
 // When render, if the drink's id is saved in localStorage then show "bookmarked"
 // let drinkIds = getLocalStorage();
 // if (drinkIds.includes(id)) {
@@ -45,37 +55,41 @@ const randomNum = function (length) {
 
 // Q2: How to get the search value from the form input?
 const renderResult = function (data) {
+  searchList.innerHTML = "";
   let html = "";
   let i = 0;
   while (i < data.length) {
-    console.log(data[i].strDrink, data[i].strAlcoholic);
+    // console.log(data[i]);
+    // console.log(data[i].idDrink, data[i].strDrink, data[i].strAlcoholic);
+    html += `
+      <li class="list_item">
+        <div class="link" data-id="${data[i].idDrink}">
+          <img
+            class="list_item_img"
+            src="${data[i].strDrinkThumb}"
+          />
+          ${data[i].strDrink} (${data[i].strAlcoholic})
+        </div>
+      </li>`;
     i++;
-    // html += `
-    //   <li class="list_item">
-    //     <div class="link" data-id="${data[i].idDrink}">
-    //       <img
-    //         class="list_item_img"
-    //         src="${data[i].strDrinkThumb}"
-    //       />
-    //       ${data[i].strDrink} (${data[i].strAlcoholic})
-    //     </div>
-    //   </li>`;
   }
-  //searchList.insertAdjacentHTML("beforeend", html);
+  searchList.insertAdjacentHTML("beforeend", html);
 };
 
 const getCocktailByName = function (name) {
-  console.log(name);
-  // fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     data = data.drinks;
-  //     renderResult(data);
-  //   });
+  // console.log(name);
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data = data.drinks;
+      renderResult(data);
+    });
 };
 
-const searchCocktailByName = function () {
-  let name = document.getElementById("cocktail").value;
+const searchCocktailByName = function (e) {
+  e.preventDefault();
+  let name = inputCocktail.value;
+  // console.log(name);
   getCocktailByName(name);
 };
 const deleteAllBookmarks = function () {
@@ -296,5 +310,4 @@ btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", getBookmarkedItems);
 // clearBtn.addEventListener("click", deleteAllBookmarks);
 closeBtn.addEventListener("click", closeBookmarkList);
-searchBtn.addEventListener("submit", searchCocktailByName);
-//searchCocktailByName("vodka");
+searchBtn.addEventListener("click", searchCocktailByName);
