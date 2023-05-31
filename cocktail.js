@@ -19,9 +19,10 @@ const inputCocktail = document.getElementById("cocktail");
 // DONE 2. allow users to view bookmarked cocktails (as list in a div),and add clickable link to list item
 // DONE 3. allow user to remove item from bookmark
 // DONE 4. allow users to search cocktail by name then render search result as list
-// 5. add pagination (pending...)
-// 6. structure js files, clean up code
-// 7. Solve bookmark issue
+// DONE 5. clean up code
+// 6. add pagination (pending...)
+// 7. structure js files
+// 8. Solve bookmark issue
 
 // Extras:
 // 1. add servings calculator
@@ -43,13 +44,8 @@ bookmark_added
 
 // When render, if the drink's id is saved in localStorage then show "bookmarked"
 // let drinkIds = getLocalStorage();
-// if (drinkIds.includes(${
-//   data.idDrink
-// })) {
-//   document.querySelector(".bookmark_btn").classList.add("added");
-//   document.querySelector(
-//     ".bookmark_btn"
-//   ).innerHTML = `<span class="material-symbols-outlined">bookmark_added</span>Bookmarked`;
+// if (drinkIds.includes(`${data.idDrink}`)) {
+//   setItemAsBookmarked()
 // }
 
 // render drinks as listed links
@@ -142,12 +138,7 @@ const addAsBookmark = function (id) {
   if (document.querySelector(".bookmark_btn").classList.contains("added")) {
     deleteBookmarkedItem(id);
   } else {
-    document.querySelector(".bookmark_btn").classList.add("added");
-    document.querySelector(
-      ".bookmark_btn"
-    ).innerHTML = `<span class="material-symbols-outlined">
-  bookmark_added
-  </span>Bookmarked`;
+    setItemAsBookmarked();
     // add drink into localStorage
     localStorage.setItem("Bookmarked", JSON.stringify(bookmarked));
     alert("Drink was added successfully!");
@@ -217,12 +208,7 @@ const renderDrinkById = function (id) {
     .then((data) => {
       data = data.drinks[0];
       renderCocktail(data);
-      document.querySelector(".bookmark_btn").classList.add("added");
-      document.querySelector(
-        ".bookmark_btn"
-      ).innerHTML = `<span class="material-symbols-outlined">
-      bookmark_added
-      </span>Bookmarked`;
+      setItemAsBookmarked();
     });
 };
 
