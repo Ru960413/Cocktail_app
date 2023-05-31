@@ -75,4 +75,5 @@ body {
 }
 .list_item {
   font-size: 1.2rem;
+  cursor: pointer;
 }
