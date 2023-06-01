@@ -105,19 +105,14 @@ const deleteAllBookmarks = function () {
   localStorage.removeItem("Bookmarked");
 };
 
+// <SOLVED> This function is not working correctly...
 // <SOLVED> Not working
 // Solution: 可以用drink id
 const deleteBookmarkedItem = function (id) {
   if (confirm("Do you want to delete this beverage?")) {
-    const bookmark_id = id;
     const bookmarks = JSON.parse(localStorage.getItem("Bookmarked"));
-    for (let i = 0; i < bookmarks.length; i++) {
-      if ((bookmarks[i] = bookmark_id)) {
-        bookmarks.splice(i, 1);
-        break;
-      }
-    }
-    localStorage.setItem("Bookmarked", JSON.stringify(bookmarks));
+    const adjustedBookmarks = bookmarks.filter((bookmark) => bookmark != id);
+    localStorage.setItem("Bookmarked", JSON.stringify(adjustedBookmarks));
     location.reload();
     alert("Deleted!");
   } else {
@@ -184,10 +179,10 @@ const getBookmarkedItems = function () {
   closeBtn.classList.remove("close_btn_inactive");
   closeBtn.classList.add("close_btn_active");
   let drinkIds = getLocalStorage();
-  if (!drinkIds) {
-    bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
-  } else {
+  if (drinkIds.length > 0) {
     getDrinkFromId(drinkIds);
+  } else {
+    bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
   }
 };
 
