@@ -179,7 +179,7 @@ const getBookmarkedItems = function () {
   closeBtn.classList.remove("close_btn_inactive");
   closeBtn.classList.add("close_btn_active");
   let drinkIds = getLocalStorage();
-  if (drinkIds.length > 0) {
+  if (drinkIds?.length > 0) {
     getDrinkFromId(drinkIds);
   } else {
     bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
