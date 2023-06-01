@@ -1,4 +1,10 @@
-"use strict";
+import {
+  randomNum,
+  setItemAsBookmarked,
+  closeBookmarkList,
+} from "./helpers.js";
+
+// "use strict";
 const btnCocktail = document.querySelector(".btn_cocktail");
 const cocktailsContainer = document.querySelector(".cocktails");
 const btnNonAlcoholic = document.querySelector(".btn_non_alcoholic");
@@ -28,19 +34,6 @@ const inputCocktail = document.getElementById("cocktail");
 // 1. add servings calculator
 
 let bookmarked = [];
-
-const randomNum = function (length) {
-  return Math.floor(Math.random() * length);
-};
-
-const setItemAsBookmarked = function () {
-  document.querySelector(".bookmark_btn").classList.add("added");
-  document.querySelector(
-    ".bookmark_btn"
-  ).innerHTML = `<span class="material-symbols-outlined">
-bookmark_added
-</span>Bookmarked`;
-};
 
 // When render, if the drink's id is saved in localStorage then show "bookmarked"
 // let drinkIds = getLocalStorage();
@@ -184,14 +177,6 @@ const getBookmarkedItems = function () {
   } else {
     bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
   }
-};
-
-const closeBookmarkList = function () {
-  bookmarkContainer.classList.add("bookmarked_content_container_inactive");
-  bookmarkContainer.classList.remove("bookmarked_content_container_active");
-  closeBtn.classList.add("close_btn_inactive");
-  closeBtn.classList.remove("close_btn_active");
-  bookmarkList.innerHTML = "";
 };
 
 const renderDrinkById = function (id) {
