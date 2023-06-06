@@ -31,7 +31,7 @@ const inputCocktail = document.getElementById("cocktail");
 // 8. Solve bookmark issue
 
 // Extras:
-// 1. add servings calculator
+// 1. add servings calculator (cancelled)
 
 let bookmarked = [];
 
