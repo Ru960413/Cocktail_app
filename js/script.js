@@ -23,9 +23,9 @@ const greeting = document.querySelector(".greeting_text");
 // DONE 3. allow user to remove item from bookmark
 // DONE 4. allow users to search cocktail by name then render search result as list
 // DONE 5. clean up code
-// 6. add pagination (pending...)
-// 7. structure js files
-// 8. Solve bookmark issue
+// DONE 6. structure js
+// 7. files add pagination (cancelled)
+// 8. Solve bookmark issue: after reload the bookmarked cocktail's bookmark_btn class doesn't have "added" anymore
 
 // Extras:
 // 1. add servings calculator (cancelled)
@@ -54,6 +54,14 @@ const setItemAsBookmarked = function () {
   ).innerHTML = `<span class="material-symbols-outlined">
   bookmark_added
   </span>Bookmarked`;
+};
+
+const test = function (data) {
+  let drinkIds = getLocalStorage();
+  if (drinkIds.includes(`${data.idDrink}`)) {
+    console.log("Yes!");
+    // setItemAsBookmarked();
+  }
 };
 
 const renderDrinkFromSearch = function (id) {
@@ -132,11 +140,14 @@ const deleteBookmarkedItem = function (id) {
 
 // ISSUE: drink can be add into localStorage but after reload its bookmark's class doesn't have "added" anymore kinda SOLVED (add the class again)--> need improvement
 // <SOLVED> ISSUE 2: drinks are not added correctly, now every drink rendered will be added...
-
 // Add the drink's id to localStorage, when bookmark button is clicked
 const addAsBookmark = function (id) {
   // add id into bookmarked array
-  if (bookmarked.includes(id)) return;
+  if (bookmarked.includes(id)) {
+    setItemAsBookmarked();
+    alert("This drink has already been bookmarked");
+    return;
+  }
   bookmarked.push(id);
 
   // change the style of bookmark btn
@@ -210,6 +221,7 @@ const getBookmarkedItems = function () {
 
 const renderCocktail = function (data) {
   greeting.style.display = "none";
+
   while (cocktailsContainer.firstChild) {
     cocktailsContainer.removeChild(cocktailsContainer.firstChild);
   }
