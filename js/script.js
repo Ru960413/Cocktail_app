@@ -218,9 +218,9 @@ const renderCocktail = function (data) {
     <div class="cocktail__data">
       <div class="cocktail_illustration">
         <h3 class="cocktail__name">${data.strDrink}</h3>
-        <div class="bookmark_btn" onClick="addAsBookmark${
+        <div class="bookmark_btn" onClick="addAsBookmark(${
           data.idDrink
-        }"><span class="material-symbols-outlined">
+        })"><span class="material-symbols-outlined">
         bookmark</span>Bookmark</div>
       </div>
       <h4 class="cocktail__type">${data.strAlcoholic}</h4>
