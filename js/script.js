@@ -73,7 +73,8 @@ const renderDrinkFromSearch = function (id) {
     .then((data) => {
       data = data.drinks[0];
       renderCocktail(data);
-    });
+    })
+    .finally((cocktailsContainer.style.opacity = 1));
 };
 
 const renderResult = function (data) {
@@ -191,7 +192,8 @@ const renderDrinkById = function (id) {
       data = data.drinks[0];
       renderCocktail(data);
       setItemAsBookmarked();
-    });
+    })
+    .finally((cocktailsContainer.style.opacity = 1));
 };
 
 //<DONE> TODO: re-design list for showing both search result items and bookmarked items
@@ -285,7 +287,8 @@ const getNonAlcoholic = function () {
         .then((data) => {
           data = data.drinks[0];
           renderCocktail(data);
-        });
+        })
+        .finally((cocktailsContainer.style.opacity = 1));
     });
 };
 
@@ -306,7 +309,8 @@ const getAlcoholic = function () {
         .then((data) => {
           data = data.drinks[0];
           renderCocktail(data);
-        });
+        })
+        .finally((cocktailsContainer.style.opacity = 1));
     });
 };
 
