@@ -2,7 +2,7 @@ import {
   randomNum,
   setItemAsBookmarked,
   closeBookmarkList,
-} from "./helpers.js";
+} from "/js/helpers.js";
 
 // "use strict";
 const btnCocktail = document.querySelector(".btn_cocktail");
@@ -153,6 +153,18 @@ const getDrinkFromId = function (drinkIds) {
       })
   );
 };
+const renderDrinkById = function (id) {
+  while (cocktailsContainer.firstChild) {
+    cocktailsContainer.removeChild(cocktailsContainer.firstChild);
+  }
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      data = data.drinks[0];
+      renderCocktail(data);
+      setItemAsBookmarked();
+    });
+};
 
 //<DONE> TODO: re-design list for showing both search result items and bookmarked items
 // render bookmarked items as a list using the drinks' ids stored in localStorage(need to get strDrink, strAlcoholic and strDrinkThumb) DONE
@@ -177,19 +189,6 @@ const getBookmarkedItems = function () {
   } else {
     bookmarkContainer.innerHTML = `<li class="bookmark_item">You don't have any bookmarked drinks</li>`;
   }
-};
-
-const renderDrinkById = function (id) {
-  while (cocktailsContainer.firstChild) {
-    cocktailsContainer.removeChild(cocktailsContainer.firstChild);
-  }
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      data = data.drinks[0];
-      renderCocktail(data);
-      setItemAsBookmarked();
-    });
 };
 
 const renderCocktail = function (data) {
