@@ -1,10 +1,6 @@
-import {
-  randomNum,
-  setItemAsBookmarked,
-  closeBookmarkList,
-} from "/js/helpers.js";
+// import { randomNum, setItemAsBookmarked } from "/js/helpers.js";
 
-// "use strict";
+"use strict";
 const btnCocktail = document.querySelector(".btn_cocktail");
 const cocktailsContainer = document.querySelector(".cocktails");
 const btnNonAlcoholic = document.querySelector(".btn_non_alcoholic");
@@ -46,6 +42,18 @@ let bookmarked = [];
 // Solution: can let the href of anchor tag (located inside list items) link to the drink's id, and then use one of the functions to render drink using the id provided
 
 // <SOLVED> Q2: How to get the search value from the form input?
+const randomNum = function (length) {
+  return Math.floor(Math.random() * length);
+};
+
+const setItemAsBookmarked = function () {
+  document.querySelector(".bookmark_btn").classList.add("added");
+  document.querySelector(
+    ".bookmark_btn"
+  ).innerHTML = `<span class="material-symbols-outlined">
+  bookmark_added
+  </span>Bookmarked`;
+};
 
 const renderDrinkFromSearch = function (id) {
   while (cocktailsContainer.firstChild) {
@@ -66,7 +74,7 @@ const renderResult = function (data) {
   while (i < data.length) {
     html += `
       <li class="list_item">
-        <div class="link" data-id="${data[i].idDrink}" onClick="renderDrinkFromSearch(${data[i].idDrink})">
+        <div class="list_link" data-id="${data[i].idDrink}" onClick="renderDrinkFromSearch(${data[i].idDrink})">
           <img
             class="list_item_img"
             src="${data[i].strDrinkThumb}"
@@ -96,6 +104,14 @@ const searchCocktailByName = function (e) {
 
 const deleteAllBookmarks = function () {
   localStorage.removeItem("Bookmarked");
+};
+
+const closeBookmarkList = function () {
+  bookmarkContainer.classList.add("bookmarked_content_container_inactive");
+  bookmarkContainer.classList.remove("bookmarked_content_container_active");
+  closeBtn.classList.add("close_btn_inactive");
+  closeBtn.classList.remove("close_btn_active");
+  bookmarkList.innerHTML = "";
 };
 
 // <SOLVED> This function is not working correctly...
@@ -202,9 +218,9 @@ const renderCocktail = function (data) {
     <div class="cocktail__data">
       <div class="cocktail_illustration">
         <h3 class="cocktail__name">${data.strDrink}</h3>
-        <div class="bookmark_btn" onClick="addAsBookmark(${
+        <div class="bookmark_btn" onClick="addAsBookmark${
           data.idDrink
-        })"><span class="material-symbols-outlined">
+        }"><span class="material-symbols-outlined">
         bookmark</span>Bookmark</div>
       </div>
       <h4 class="cocktail__type">${data.strAlcoholic}</h4>
@@ -280,9 +296,26 @@ const getAlcoholic = function () {
     });
 };
 
+const link = document.querySelector(".link");
+const bookmarkBtn = document.querySelector(".bookmark_btn");
+const listedLink = document.querySelector(".list_link");
+
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", getBookmarkedItems);
 closeBtn.addEventListener("click", closeBookmarkList);
 searchBtn.addEventListener("click", searchCocktailByName);
+
+// if (link)
+//   link.addEventListener("click", function (data) {
+//     renderDrinkById(`${data[i].idDrink}`);
+//   });
+// if (bookmarkBtn)
+//   bookmarkBtn.addEventListener("click", function (data) {
+//     addAsBookmark(`${data[i].idDrink}`);
+//   });
+// if (listedLink)
+//   listedLink.addEventListener("click", function (data) {
+//     renderDrinkFromSearch(`${data[i].idDrink}`);
+//   });
 // clearBtn.addEventListener("click", deleteAllBookmarks);
