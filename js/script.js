@@ -15,6 +15,7 @@ const bookmarkList = document.querySelector(".bookmark_list");
 const closeBtn = document.querySelector(".close_btn");
 const searchList = document.querySelector(".search_list");
 const inputCocktail = document.getElementById("cocktail");
+const greeting = document.querySelector(".greeting_text");
 
 // TODOs:
 // DONE 1. allow users to add cocktail to bookmark
@@ -208,6 +209,7 @@ const getBookmarkedItems = function () {
 };
 
 const renderCocktail = function (data) {
+  greeting.style.display = "none";
   while (cocktailsContainer.firstChild) {
     cocktailsContainer.removeChild(cocktailsContainer.firstChild);
   }
