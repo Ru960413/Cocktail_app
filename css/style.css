@@ -8,13 +8,19 @@
 10rem means 160px, when scaling it is recommended to set html's font-size using "%" */
 
 /* However, em is dependent on the font-size of the nearest parent */
-@media (max-width: 1000px) {
+@media (max-width: 1280px) {
   html {
     font-size: 62.5%;
   }
 
   .neon-text-container {
     height: 10rem !important;
+    width: auto;
+  }
+
+  .search_result_container,
+  .container {
+    height: 75rem !important;
     width: auto;
   }
 }
@@ -25,7 +31,7 @@
     margin: 0;
     padding: 0;
   }
-  /* .btn-non-alcoholic, */
+
   .btn_cocktail,
   .bookmarked {
     height: 13rem !important;
@@ -50,9 +56,6 @@
   .neon-text-container {
     height: 9rem !important;
     margin: auto !important;
-  }
-  h2 {
-    display: none;
   }
 
   .search_result_container,
@@ -213,6 +216,7 @@ li {
   /*opacity: 0;
  transition: opacity 1s; */
   background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
+  overflow: scroll;
 }
 
 /* .recipe, */
