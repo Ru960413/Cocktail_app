@@ -76,7 +76,11 @@ body {
   background-color: #000;
   /* background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png"); */
 }
-
+.greeting_text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+}
 .container {
   display: flex;
   flex-flow: column;
