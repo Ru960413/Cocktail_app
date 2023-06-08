@@ -62,17 +62,17 @@
 
   .neon-text-container {
     height: 5rem !important;
-    margin: 0.5rem !important;
+    margin: auto !important;
   }
   h2 {
     display: none;
   }
 
-  .container,
+  /* .container,
   .cocktails {
     width: 80% !important;
-  }
-  .nav{
+  } */
+  .nav {
     width: 48rem;
   }
   /* .search_result_container{
