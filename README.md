@@ -27,21 +27,23 @@
 
 ### Project 重點
 
+⭐️ 請點選圖片至 Youtube 看示範影片 ⭐️
+
 1. 利用 Search bar 查詢酒譜
 
-   [![查詢](https://markdown-videos.deta/youtube/EvPURmgBuig)](https://youtu.be/EvPURmgBuig)
+   [![查詢](for_readme/search.png)](https://youtu.be/EvPURmgBuig)
 
 2. 點選"Random Alcoholic Cocktail"或是"Random Nonalcoholic Cocktail"隨機地得到酒譜
 
-   [![隨機產生酒譜](https://markdown-videos.deta/youtube/Eikxb5TMrMk)](https://youtu.be/Eikxb5TMrMk)
+   [![隨機產生酒譜](for_readme/random.png)](https://youtu.be/Eikxb5TMrMk)
 
 3. 利用 bookmark 按鈕將酒譜儲存於 localStorage 以便未來能再度查看
 
-   [![加入書籤](https://markdown-videos.deta/youtube/LBb3ygprzUE)](https://youtu.be/LBb3ygprzUE)
+   [![加入書籤](for_readme/viewBokkmarked.png)](https://youtu.be/LBb3ygprzUE)
 
 4. 點選右上角的"Bookmarked"即可看到已儲存的調酒，點選"bookmarked"按鈕即可將酒譜從書籤中刪除
 
-   [![刪除書籤](https://markdown-videos.deta/youtube/viObWHmbQtk)](https://youtu.be/viObWHmbQtk)
+   [![刪除書籤](for_readme/delete.png)](https://youtu.be/viObWHmbQtk)
 
 5. Responsive Design，經過設計讓使用者不管在桌機、筆電或是平板電腦上都可以順利地瀏覽網站:
 
