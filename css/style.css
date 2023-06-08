@@ -32,17 +32,17 @@
     padding: 0;
   }
 
-  .btn_non_alcoholic {
+  /* .btn_non_alcoholic {
     display: none !important;
-  }
-  /* .btn_non_alcoholic,*/
+  } */
+  .btn_non_alcoholic,
   .btn_cocktail {
-    /* height: 13rem !important; */
-    height: 3rem !important;
+    height: 13rem !important;
+    /* height: 10rem !important; */
     width: 12rem;
   }
   .bookmarked {
-    height: 3rem !important;
+    height: 13rem !important;
     width: 5rem;
   }
   input {
@@ -62,7 +62,7 @@
 
   .neon-text-container {
     height: 5rem !important;
-    margin: auto !important;
+    margin: 1rem !important;
   }
   h2 {
     display: none;
