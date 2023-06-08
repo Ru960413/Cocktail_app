@@ -36,11 +36,14 @@
     display: none !important;
   }
   /* .btn_non_alcoholic,*/
-  .btn_cocktail,
-  .bookmarked {
+  .btn_cocktail {
     /* height: 13rem !important; */
     height: 3rem !important;
-    width: 15rem;
+    width: 12rem;
+  }
+  .bookmarked {
+    height: 3rem !important;
+    width: 5rem;
   }
   input {
     /* height: 11rem !important; */
@@ -59,12 +62,22 @@
 
   .neon-text-container {
     height: 5rem !important;
-    margin: auto !important;
+    margin: 0.5rem !important;
   }
   h2 {
     display: none;
   }
 
+  .container,
+  .cocktails {
+    width: 80% !important;
+  }
+  .nav{
+    width: 48rem;
+  }
+  /* .search_result_container{
+    margin-left: 10rem !important;
+  } */
   /* .search_result_container,
   .container {
     height: 60rem !important;
