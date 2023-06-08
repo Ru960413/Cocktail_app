@@ -14,7 +14,7 @@
   }
 
   .neon-text-container {
-    height: 10rem !important;
+    height: 8rem !important;
     width: auto;
   }
 
@@ -27,41 +27,46 @@
 
 @media only screen and (max-width: 600px) {
   html {
-    font-size: 25%;
+    font-size: 35%;
     margin: 0;
     padding: 0;
   }
 
+  .btn_non_alcoholic,
   .btn_cocktail,
   .bookmarked {
-    height: 13rem !important;
-    width: 17rem;
-  }
-
-  .btn_non_alcoholic {
-    display: none !important;
+    /* height: 13rem !important; */
+    height: 3rem !important;
+    width: 9rem;
   }
   input {
+    /* height: 11rem !important; */
+    height: 3rem !important;
     width: 12rem !important;
-    height: 11rem !important;
   }
   .search_btn {
-    height: 11rem !important;
-    width: auto !important;
+    /* height: 11rem !important; */
+    height: 3rem !important;
+    width: 4rem !important;
   }
   .cocktails {
-    width: 75%;
+    width: 65%;
   }
 
   .neon-text-container {
-    height: 9rem !important;
+    height: 5rem !important;
     margin: auto !important;
   }
 
   .search_result_container,
   .container {
-    height: 90rem !important;
-    width: auto;
+    height: 60rem !important;
+  }
+  .container {
+    width: 40rem;
+  }
+  .search_result_container {
+    width: 20rem !important;
   }
   .cocktails {
     overflow: auto;
@@ -73,19 +78,21 @@ html {
 }
 
 body {
-  font-family: cursive;
+  font-family: "Playfair", serif;
   color: #f7f7f7;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(8, 1fr);
   background-color: #000;
-  /* background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png"); */
 }
 .greeting_text {
   text-align: center;
-  margin-top: 1.5rem;
+  margin: 1.5rem;
   font-size: 1.25rem;
+}
+.material-symbols-outlined {
+  font-size: 1.5rem !important;
 }
 .container {
   display: flex;
@@ -164,6 +171,10 @@ input {
   font-family: cursive;
   text-align: center;
 }
+.search_btn,
+input {
+  font-family: "Playfair", serif;
+}
 
 .neon-text-container {
   display: flex;
@@ -212,7 +223,6 @@ li {
   padding: 0.2rem;
 }
 
-/* .recipes, */
 .cocktails {
   display: flex;
   font-size: 2rem;
@@ -222,7 +232,6 @@ li {
   overflow: auto;
 }
 
-/* .recipe, */
 .cocktail {
   background-color: #000;
   font-size: 1.25rem;
@@ -230,7 +239,6 @@ li {
   border-radius: 0.7rem;
 }
 
-/* .recipe__img, */
 .cocktail__img {
   width: 15rem;
   height: 15rem;
@@ -241,19 +249,16 @@ li {
   margin-top: 0.5rem;
 }
 
-/* .recipe__data, */
 .cocktail__data {
   padding: 1rem;
 }
 
-/* .recipe__name, */
 .cocktail__name {
   font-size: 2rem;
   margin-bottom: 0.7rem;
   text-transform: uppercase;
 }
 
-/* .recipe__region, */
 .cocktail__type {
   /* font-family: cursive; */
   font-size: 1.25rem;
@@ -262,7 +267,6 @@ li {
   color: #888;
 }
 
-/* .recipe__row:not(:last-child), */
 .cocktail__row:not(:last-child) {
   margin-bottom: 0.8rem;
 }
@@ -277,7 +281,6 @@ p {
   line-height: 2rem;
 }
 
-.recipe__row span,
 .cocktail__row span {
   display: inline-block;
   margin-right: 2rem;
@@ -329,11 +332,11 @@ p {
   color: #000;
 }
 
-/* .btn-recipe, */
 .btn_cocktail,
 .btn_non_alcoholic,
 .btn_alcoholic,
 .bookmarked {
+  font-family: "Playfair", serif !important;
   display: flex;
   justify-content: center;
   align-items: center;
