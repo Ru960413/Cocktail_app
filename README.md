@@ -11,6 +11,8 @@
 
 <https://lux-bar.netlify.app/>
 
+![Welcome Page](for_readme/lux_bar.png "Welcome Page")
+
 ### 所使用的技術
 
     1. HTML
@@ -27,33 +29,25 @@
 
 1. 利用 Search bar 查詢酒譜
 
-   ![跑步](for_readme/running.png "使用者登入")
-
-   ![騎腳踏車](for_readme/cycling.png "使用者註冊")
+   ![查詢](for_readme/searchBar.mov "查詢")
 
 2. 點選"Random Alcoholic Cocktail"或是"Random Nonalcoholic Cocktail"隨機地得到酒譜
 
-   ![刪除單一健身紀錄](for_readme/delete_this.png "刪除單一健身紀錄")
+   ![隨機產生酒譜](for_readme/random.mov "隨機產生酒譜")
 
-   ![刪除所有健身紀錄](for_readme/delete_all.png "刪除所有健身紀錄")
+3. 利用 bookmark 按鈕將酒譜儲存於 localStorage 以便未來能再度查看
 
-3. 利用 bookmark 按鈕將酒譜儲存於 localStorage 以便未來能再度地查看
+   ![加入書籤](for_readme/addTobookmark.mov "加入書籤")
 
-   ![刪除單一健身紀錄](for_readme/delete_this.png "刪除單一健身紀錄")
+4. 點選右上角的"Bookmarked"即可看到已儲存的調酒，點選"bookmarked"按鈕即可將酒譜從書籤中刪除
 
-   ![刪除所有健身紀錄](for_readme/delete_all.png "刪除所有健身紀錄")
-
-4. 點選右上角的"Bookmarked"即可看到已儲存的調酒
-
-   ![刪除單一健身紀錄](for_readme/delete_this.png '刪除單一健身紀錄')
-
-   ![刪除所有健身紀錄](for_readme/delete_all.png '刪除所有健身紀錄')
+   ![刪除單一健身紀錄](for_readme/deleteBookmark.mov'刪除單一健身紀錄')
 
 5. Responsive Design，經過設計讓使用者不管在桌機、筆電或是平板電腦上都可以順利地瀏覽網站:
 
-   ![刪除單一健身紀錄](for_readme/delete_this.png '刪除單一健身紀錄')
+   ![27吋螢幕](for_readme/27inchScreen.png '刪除單一健身紀錄')
 
-   ![刪除所有健身紀錄](for_readme/delete_all.png '刪除所有健身紀錄')
+   ![筆電或平板](for_readme/smallerScreen.png '刪除所有健身紀錄')
 
 #### 未來的改善
 
