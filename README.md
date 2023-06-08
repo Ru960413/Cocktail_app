@@ -45,9 +45,9 @@
 
 5. Responsive Design，經過設計讓使用者不管在桌機、筆電或是平板電腦上都可以順利地瀏覽網站:
 
-   ![27吋螢幕](for_readme/27inchScreen.png "刪除單一健身紀錄")
+   ![27吋螢幕](for_readme/27inchScreen.png "27吋螢幕")
 
-   ![筆電或平板](for_readme/smallerScreen.png "刪除所有健身紀錄")
+   ![筆電或平板](for_readme/smallerScreen.png "筆電或平板")
 
 #### 未來的改善
 
