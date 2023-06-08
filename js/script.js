@@ -144,11 +144,7 @@ const deleteBookmarkedItem = function (id) {
 // Add the drink's id to localStorage, when bookmark button is clicked
 const addAsBookmark = function (id) {
   // add id into bookmarked array
-  if (bookmarked.includes(id)) {
-    setItemAsBookmarked();
-    alert("This drink has already been bookmarked");
-    return;
-  }
+  if (bookmarked.includes(id)) return;
   bookmarked.push(id);
 
   // change the style of bookmark btn
