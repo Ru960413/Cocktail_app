@@ -39,7 +39,7 @@
 
 3. 利用 bookmark 按鈕將酒譜儲存於 localStorage 以便未來能再度查看
 
-   [![加入書籤](for_readme/viewBokkmarked.png)](https://youtu.be/LBb3ygprzUE)
+   [![加入書籤](for_readme/viewBookmarked.png)](https://youtu.be/LBb3ygprzUE)
 
 4. 點選右上角的"Bookmarked"即可看到已儲存的調酒，點選"bookmarked"按鈕即可將酒譜從書籤中刪除
 
