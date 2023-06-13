@@ -42,6 +42,10 @@
     min-height: 3rem !important;
     min-width: 9rem !important;
   }
+  .container,
+  .search_result_container {
+    margin: 0 !important;
+  }
   .search_btn {
     min-height: 3rem !important;
     min-width: 3rem !important;
