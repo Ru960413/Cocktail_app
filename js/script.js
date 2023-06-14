@@ -313,6 +313,7 @@ const getAlcoholic = function () {
 const link = document.querySelector(".link");
 const bookmarkBtn = document.querySelector(".bookmark_btn");
 const listedLink = document.querySelector(".list_link");
+const input = document.querySelector("[type=search]");
 
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
@@ -320,16 +321,15 @@ bookmarkedLink.addEventListener("click", getBookmarkedItems);
 closeBtn.addEventListener("click", closeBookmarkList);
 searchBtn.addEventListener("click", searchCocktailByName);
 
-// if (link)
-//   link.addEventListener("click", function (data) {
-//     renderDrinkById(`${data[i].idDrink}`);
+// const hideMobileKeyboardOnReturn = function (keyboardEvent) {
+//   element.addEventListener("keyup", (keyboardEvent) => {
+//     if (keyboardEvent.code == "Enter") {
+//       element.blur();
+//     }
 //   });
-// if (bookmarkBtn)
-//   bookmarkBtn.addEventListener("click", function (data) {
-//     addAsBookmark(`${data[i].idDrink}`);
-//   });
-// if (listedLink)
-//   listedLink.addEventListener("click", function (data) {
-//     renderDrinkFromSearch(`${data[i].idDrink}`);
-//   });
-// clearBtn.addEventListener("click", deleteAllBookmarks);
+// };
+input.addEventListener("keyup", (keyboardEvent) => {
+  if (keyboardEvent.code == "Enter") {
+    input.blur();
+  }
+});
