@@ -110,6 +110,7 @@ const searchCocktailByName = function (e) {
   e.preventDefault();
   let name = inputCocktail.value.toLowerCase().trim();
   getCocktailByName(name);
+  inputCocktail.blur();
 };
 
 const deleteAllBookmarks = function () {
@@ -313,23 +314,9 @@ const getAlcoholic = function () {
 const link = document.querySelector(".link");
 const bookmarkBtn = document.querySelector(".bookmark_btn");
 const listedLink = document.querySelector(".list_link");
-const input = document.querySelector("[type=search]");
 
 btnCocktail.addEventListener("click", getAlcoholic);
 btnNonAlcoholic.addEventListener("click", getNonAlcoholic);
 bookmarkedLink.addEventListener("click", getBookmarkedItems);
 closeBtn.addEventListener("click", closeBookmarkList);
 searchBtn.addEventListener("click", searchCocktailByName);
-
-// const hideMobileKeyboardOnReturn = function (keyboardEvent) {
-//   element.addEventListener("keyup", (keyboardEvent) => {
-//     if (keyboardEvent.code == "Enter") {
-//       element.blur();
-//     }
-//   });
-// };
-input.addEventListener("keyup", (keyboardEvent) => {
-  if (keyboardEvent.code == "Enter") {
-    input.blur();
-  }
-});
