@@ -10,7 +10,7 @@
 /* However, em is dependent on the font-size of the nearest parent */
 @media (max-width: 1280px) {
   html {
-    font-size: 62.5%;
+    font-size: 70%;
   }
 
   .neon-text-container {
@@ -27,7 +27,7 @@
 
 @media only screen and (max-width: 600px) {
   html {
-    font-size: 45%;
+    font-size: 55%;
     margin: 0;
     padding: 0;
   }
