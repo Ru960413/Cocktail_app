@@ -10,7 +10,7 @@
 /* However, em is dependent on the font-size of the nearest parent */
 @media (max-width: 1280px) {
   html {
-    font-size: 70%;
+    font-size: 80%;
   }
 
   .neon-text-container {
@@ -25,30 +25,31 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   html {
-    font-size: 50%;
+    font-size: 65%;
     margin: 0;
     padding: 0;
   }
 
   .btn_non_alcoholic,
-  .btn_cocktail {
-    min-height: 4rem;
-    min-width: 7rem;
+  .btn_cocktail,
+  .bookmarked {
+    max-height: 4rem;
+    max-width: 7rem;
   }
 
   input {
-    min-height: 3rem !important;
-    min-width: 9rem !important;
+    max-height: 4rem !important;
+    max-width: 9rem !important;
   }
   .container,
   .search_result_container {
     margin: 0 !important;
   }
   .search_btn {
-    min-height: 3rem !important;
-    min-width: 3rem !important;
+    max-height: 4rem !important;
+    max-width: 3rem !important;
     margin-right: 0.5rem !important;
   }
 
@@ -65,8 +66,19 @@
   .bookmarked-icon-nav {
     padding: 0;
   }
-  .bookmarked {
-    width: 3rem;
+}
+
+@media screen and (max-width: 370px) {
+  html {
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+  }
+  .cocktails {
+    max-width: 19rem;
+  }
+  input {
+    max-width: 5rem !important;
   }
 }
 
