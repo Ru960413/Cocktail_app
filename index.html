@@ -40,7 +40,7 @@
   <body>
     <div class="header">
       <div class="neon-text-container">
-        <h1 class="neon-text">Welcome to Lux</h1>
+        <h1 class="neon-text"><span class="hidden">Welcome to </span>Lux</h1>
         <h2 class="neon-text">We Open All Day</h2>
       </div>
       <div class="nav">
@@ -58,11 +58,26 @@
         <button class="btn_non_alcoholic">Random Nonalcoholic Cocktail</button>
         <button class="bookmarked">Bookmarked</button> -->
         <!-- <button class="clear">Clear</button> -->
-        <button class="btn_cocktail">Random 🍹</button>
+        <ul class="random__btns">
+          <li class="random__btn">
+            <a href="#" class="btn_cocktail">Random 🍹</a>
+          </li>
+          <li class="random__btn">
+            <a href="#" class="btn_non_alcoholic">Random Non🍹</a>
+          </li>
+          <li class="random__btn">
+            <a href="#" class="bookmarked">
+              <span class="material-symbols-outlined bookmarked-icon-nav">
+                bookmark_added
+              </span>
+            </a>
+          </li>
+        </ul>
+        <!-- <button class="btn_cocktail">Random 🍹</button>
         <button class="btn_non_alcoholic">Random non🍹</button>
         <button class="bookmarked">
           <span class="material-symbols-outlined bookmarked-icon-nav"> bookmark_added </span>
-        </button>
+        </button> -->
       </div>
     </div>
     <div class="search_result_container custom-scroll">

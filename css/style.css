@@ -1,85 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
-}
-
-/* the browser's(aka html) default font-size is 16px, rem is a relative value,
-10rem means 160px, when scaling it is recommended to set html's font-size using "%" */
-
-/* However, em is dependent on the font-size of the nearest parent */
-@media (max-width: 1280px) {
-  html {
-    font-size: 80%;
-  }
-
-  .neon-text-container {
-    height: 8rem !important;
-    width: auto;
-  }
-
-  .search_result_container,
-  .container {
-    height: 75rem !important;
-    width: auto;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  html {
-    font-size: 65%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .btn_non_alcoholic,
-  .btn_cocktail,
-  .bookmarked {
-    max-height: 4rem;
-    max-width: 7rem;
-  }
-
-  input {
-    max-height: 4rem !important;
-    max-width: 9rem !important;
-  }
-  .container,
-  .search_result_container {
-    margin: 0 !important;
-  }
-  .search_btn {
-    max-height: 4rem !important;
-    max-width: 3rem !important;
-    margin-right: 0.5rem !important;
-  }
-
-  .cocktails {
-    max-width: 24rem;
-  }
-
-  .neon-text-container {
-    max-height: 6rem !important;
-  }
-  h2 {
-    display: none;
-  }
-  .bookmarked-icon-nav {
-    padding: 0;
-  }
-}
-
-@media screen and (max-width: 370px) {
-  html {
-    font-size: 62.5%;
-    margin: 0;
-    padding: 0;
-  }
-  .cocktails {
-    max-width: 19rem;
-  }
-  input {
-    max-width: 5rem !important;
-  }
+  box-sizing: border-box;
 }
 
 html {
@@ -87,7 +9,7 @@ html {
 }
 
 body {
-  font-family: "Playfair", serif;
+  font-family: "Playfair", serif !important;
   color: #f7f7f7;
   min-height: 100vh;
   display: grid;
@@ -110,7 +32,6 @@ body {
   grid-column: 2 / 2;
   grid-row: 2 / 8;
   border: #5271ff 0.1rem solid;
-  /* border-top: 0; */
   border-collapse: collapse;
   margin-right: 1rem;
   background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
@@ -332,8 +253,8 @@ p {
 }
 
 .added {
-  color: #000 !important;
-  background-color: white !important;
+  color: #000;
+  background-color: white;
 }
 
 .bookmark_btn:hover {
@@ -345,7 +266,7 @@ p {
 .btn_non_alcoholic,
 .btn_alcoholic,
 .bookmarked {
-  font-family: "Playfair", serif !important;
+  font-family: "Playfair", serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -359,4 +280,105 @@ p {
   color: white;
   cursor: pointer;
   margin: auto;
+}
+
+.random__btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random__btn a {
+  text-decoration: none;
+}
+
+/* the browser's(aka html) default font-size is 16px, rem is a relative value,
+10rem means 160px, when scaling it is recommended to set html's font-size using "%" */
+
+/* However, em is dependent on the font-size of the nearest parent */
+@media (max-width: 1000px) {
+  html {
+    font-size: 80%;
+  }
+
+  .neon-text-container {
+    height: 8rem !important;
+    width: auto;
+  }
+
+  .search_result_container,
+  .container {
+    height: 75rem !important;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 65%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .btn_non_alcoholic,
+  .btn_cocktail,
+  .bookmarked {
+    max-height: 4rem;
+    max-width: 7rem;
+  }
+
+  input {
+    max-height: 4rem;
+    max-width: 9rem;
+  }
+  .container,
+  .search_result_container {
+    margin: 0;
+  }
+  .search_btn {
+    max-height: 4rem;
+    max-width: 3rem;
+    margin-right: 0.5rem;
+  }
+
+  .cocktails {
+    max-width: 24rem;
+  }
+
+  .neon-text-container {
+    max-height: 6rem;
+  }
+  h2 {
+    display: none;
+  }
+  .bookmarked-icon-nav {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  html {
+    font-size: 62.5% !important;
+    margin: 0;
+    padding: 0;
+  }
+  .cocktails {
+    max-width: 19rem;
+  }
+  input {
+    max-width: 5rem;
+  }
+  .random__btn {
+    max-width: 5.5rem;
+  }
+  .hidden {
+    display: none;
+  }
+  .neon-text-container{
+    /* border-radius: 0%; */
+    padding: 0.5rem 1.5rem;
+  }
+  h1{
+    margin-top: 1rem;
+  }
 }
