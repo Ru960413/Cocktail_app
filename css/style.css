@@ -85,6 +85,7 @@ body {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   border: #5271ff 0.1rem solid;
+  border-left: 0;
   border-collapse: collapse;
 }
 
@@ -95,7 +96,6 @@ input {
   border-bottom-left-radius: 2rem;
   background-color: navy;
   border: #5271ff 0.1rem solid;
-  border-collapse: collapse;
   color: #f7f7f7;
   font-size: 1.25rem;
   font-family: cursive;
