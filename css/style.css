@@ -160,12 +160,14 @@ li {
   transition: opacity 1s;
   background-image: url("https://cdn.pixabay.com/photo/2017/02/12/12/42/wall-2059909_640.png");
   overflow: auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .cocktail {
   background-color: #000;
   font-size: 1.25rem;
-  width: 50rem;
+  width: 90%;
   border-radius: 0.7rem;
 }
 
@@ -308,7 +310,6 @@ p {
 
   .search_result_container,
   .container {
-    height: 75rem !important;
     width: auto;
   }
 }
@@ -341,9 +342,11 @@ p {
     margin-right: 0.5rem;
   }
 
-  .cocktails {
-    max-width: 24rem;
-  }
+  /*.cocktails {
+     max-width: 24rem; 
+    width: 90%;
+    margin: 0 auto;
+  }*/
 
   .neon-text-container {
     max-height: 6rem;
@@ -374,11 +377,11 @@ p {
   .hidden {
     display: none;
   }
-  .neon-text-container{
+  .neon-text-container {
     /* border-radius: 0%; */
     padding: 0.5rem 1.5rem;
   }
-  h1{
+  h1 {
     margin-top: 1rem;
   }
 }
