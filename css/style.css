@@ -103,7 +103,7 @@ input {
 }
 .search_btn,
 input {
-  font-family: "Playfair", serif;
+  font-family: "Playfair", serif !important;
 }
 
 .neon-text-container {
@@ -266,7 +266,7 @@ p {
 .btn_non_alcoholic,
 .btn_alcoholic,
 .bookmarked {
-  font-family: "Playfair", serif;
+  font-family: "Playfair", serif !important;
   display: flex;
   justify-content: center;
   align-items: center;
